@@ -1,78 +1,65 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --color-eminence: #582974;
+  --color-ultra-violet: #585596;
+  --color-white: #FFFFFF;
+  --color-citrine: #DEDC00;
+  --color-pumpkin: #FF6900;
+  
+  /* Text Colors */
+  --text-color: var(--color-eminence);
+  --text-color-secondary: var(--color-ultra-violet);
+  --text-color-tertiary: var(--color-pumpkin);
+  
+  /* Component Backgrounds */
+  --button-bg: var(--color-citrine);
+  --navbar-bg: var(--color-eminence);
+  --footer-bg: var(--color-pumpkin);
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* TypoGraph */
+  --font-headings:'Montserrat', sans-serif;
+  --font-text: 'Barlow Condensed', sans-serif;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* Global reset */
+*::before,::after,* {
+  box-sizing: border-box;
+  padding:0;
+  margin:0;
 }
-a:hover {
-  color: #535bf2;
+#root {
+  background-color: var(--color-eminence);
 }
 
+/* Apply colors */
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-family: var(--font--text);
+  height: 100vh;
+  background-color: var(--color-white);
+  color: var(--text-color);
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  background-color: var(--button-bg);
+  color: var(--color-white);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.navbar {
+  background-color: var(--navbar-bg);
 }
 
-
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', sans-serif;
+.off-canvas {
+  background-color: var(--color-pumpkin);
+  color: var();
 }
 
-p {
-  font-family: 'Barlow Condensed', sans-serif;
+.footer {
+  background-color: var(--footer-bg);
 }
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: var(--font-headings); 
+}
+P {
+  font-family: var(--font--text);
+}
+

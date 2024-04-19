@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import.meta.env.VITE_BASE_URL,
+axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 axios.defaults.withCredentials = true;
 

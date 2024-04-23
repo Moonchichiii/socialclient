@@ -1,0 +1,48 @@
+:root {
+    --auth-switch-link-color: #DEDC23;
+    --auth-switch-link-hover: #FFFFFF;
+    --auth-switch-text-color: #F9B233;    
+    
+    --form-buttons-bg-hover-color: #DEDC23;
+    --form-button-text-color:#DEDC23;
+    --form-button-text-hover-color: #3a3a3a;
+    --button-border-color: #DEDC23;
+}
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-label {
+    color: var(--text-color-dark);
+}
+.form-button,
+.btn {
+    background-color: transparent !important;
+    color: var(--form-button-text-color) !important;
+    border-color: var(--button-border-color) !important;
+    border-radius: 10px!important;
+    width: 20%!important;
+    min-width: 5%!important;
+    overflow-inline: normal!important;
+    text-overflow: inherit;
+}
+.form-button:hover,
+.btn:hover .formButton:focus,
+.btn:focus,
+.btn:active {
+    background-color: var(--form-buttons-bg-hover-color) !important;
+    color: var(--form-button-text-hover-color) !important;
+}
+.auth-switch {
+    color: var(--auth-switch-text-color);
+}
+
+.auth-switch a { 
+    color:var(--auth-switch-link-color);
+    font-size:1.25rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.auth-switch a:hover {
+    color:var(--auth-switch-link-hover);
+}

@@ -1,65 +1,61 @@
 :root {
-  --color-eminence: #582974;
-  --color-ultra-violet: #585596;
-  --color-white: #FFFFFF;
-  --color-citrine: #DEDC00;
-  --color-pumpkin: #FF6900;
+  --background-color-body: #582974;
+  --box-background-color: #534E90;
+  --text-color-white: #FFFFFF;
+  --text-color-dark: #8a8a8a;  
+  --buttons-bg-color: #DEDC23;
+  --buttons-bg-hover-color: #DEDC23; 
   
-  /* Text Colors */
-  --text-color: var(--color-eminence);
-  --text-color-secondary: var(--color-ultra-violet);
-  --text-color-tertiary: var(--color-pumpkin);
-  
-  /* Component Backgrounds */
-  --button-bg: var(--color-citrine);
-  --navbar-bg: var(--color-eminence);
-  --footer-bg: var(--color-pumpkin);
-
-  /* TypoGraph */
-  --font-headings:'Montserrat', sans-serif;
+  --text-color-primary: var(--text-color-white);
+  --text-color-secondary:var(--text-color-dark);
+  /* Typography */
+  --font-headings: 'Montserrat', sans-serif;
   --font-text: 'Barlow Condensed', sans-serif;
 }
-
 /* Global reset */
-*::before,::after,* {
+*::before,
+*::after,
+* {
   box-sizing: border-box;
-  padding:0;
-  margin:0;
-}
-#root {
-  background-color: var(--color-eminence);
+  padding: 0;
+  margin: 0;
 }
 
-/* Apply colors */
 body {
-  font-family: var(--font--text);
-  height: 100vh;
+  font-family: var(--font-text);
   background-color: var(--color-white);
-  color: var(--text-color);
+  color: var(--text-color-primary);
 }
 
+
+#root {
+  height: 100vh;
+  background-color: var(--background-color-body);
+}
+
+
+
+  
 button {
   background-color: var(--button-bg);
-  color: var(--color-white);
+  color: var(--text-color-white);
 }
 
-.navbar {
-  background-color: var(--navbar-bg);
+button:hover {
+  background-color: var(--button-bg);
+  color: var(--text-color-white);
 }
 
-.off-canvas {
-  background-color: var(--color-pumpkin);
-  color: var();
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-headings);
+  color: var(--text-color-primary);
 }
-
-.footer {
-  background-color: var(--footer-bg);
+p {
+  font-family: var(--text-color-secondary);
+  color: var(--text-color-primary);
 }
-
-h1,h2,h3,h4,h5,h6 {
-  font-family: var(--font-headings); 
-}
-P {
-  font-family: var(--font--text);
-}
-

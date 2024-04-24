@@ -1,22 +1,31 @@
-import React, { createContext, useState, useContext, useEffect } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  useMemo
+} from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from '../api/axiosDefaults';
+import axiosInstance from "../api/axiosDefaults";
 import Cookies from "js-cookie";
-import { MutatingDots } from "react-loader-spinner";
+import LoadingSpinner from "../components/LoadingSpinner";
 
-// Create a context for the current user
-export const CurrentUserContext = createContext();
+export const CurrentUserContext = createContext(null);
 
-// Custom hook to access the current user context
-export const useCurrentUser = () => useContext(CurrentUserContext);
+export const useCurrentUser = () => {
+  const context = useContext(CurrentUserContext);
+  if (!context) {
+    throw new Error("");
+  }
+  return context;
+};
 
-// Provider component for the current user context
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
 
-  // Function to set the authentication state and navigate to the dashboard
   const setAuth = (user, accessToken, refreshToken) => {
     setCurrentUser(user);
     Cookies.set("jwt_access_token", accessToken, {
@@ -27,7 +36,6 @@ export const CurrentUserProvider = ({ children }) => {
     navigate("/dashboard");
   };
 
-  // Fetch the current user on component mount
   useEffect(() => {
     const accessToken = Cookies.get("jwt_access_token");
     if (!accessToken) {
@@ -35,16 +43,17 @@ export const CurrentUserProvider = ({ children }) => {
       return;
     }
 
-    axiosInstance.get("/dj-rest-auth/user/")
-      .then(response => {
+    axiosInstance
+      .get("/dj-rest-auth/user/")
+      .then((response) => {
         setCurrentUser(response.data);
         setLoading(false);
       })
-      .catch(error => {
+      .catch((error) => {
         if (error.response?.status === 401) {
           console.log("Session expired. Please log in again.");
         } else {
-          console.error("Error validating current user:", error);
+          console.error("Validation error.", error);
         }
         setCurrentUser(null);
         navigate("/login");
@@ -52,10 +61,9 @@ export const CurrentUserProvider = ({ children }) => {
       });
   }, [navigate]);
 
-  // Add CSRF token and access token to request headers
   useEffect(() => {
     const requestInterceptor = axiosInstance.interceptors.request.use(
-      config => {
+      (config) => {
         const csrfToken = Cookies.get("csrftoken");
         const accessToken = Cookies.get("jwt_access_token");
         if (csrfToken) {
@@ -66,16 +74,15 @@ export const CurrentUserProvider = ({ children }) => {
         }
         return config;
       },
-      error => Promise.reject(error)
+      (error) => Promise.reject(error)
     );
 
-    // Handle token refresh on 401 Unauthorized response
     const responseInterceptor = axiosInstance.interceptors.response.use(
-      response => response,
-      async error => {
+      (response) => response,
+      async (error) => {
         if (error.response?.status === 401) {
           try {
-            const { data } = await axiosInstance.post("/api/token/refresh/");
+            const { data } = await axiosInstance.post("api/token/refresh/");
             Cookies.set("jwt_access_token", data.access);
             return axiosInstance.request(error.config);
           } catch (refreshError) {
@@ -89,47 +96,35 @@ export const CurrentUserProvider = ({ children }) => {
       }
     );
 
-    // Clean up interceptors on component unmount
     return () => {
       axiosInstance.interceptors.request.eject(requestInterceptor);
       axiosInstance.interceptors.response.eject(responseInterceptor);
     };
   }, [navigate]);
 
-
-  // Function to log out the current user
-  const logout = () => {    
-    setCurrentUser(null);    
+  const logout = () => {
+    setCurrentUser(null);
     Cookies.remove("jwt_access_token", { path: "/" });
-    Cookies.remove("jwt_refresh_token", { path: "/" });    
+    Cookies.remove("jwt_refresh_token", { path: "/" });
+    Cookies.remove("csrftoken", { path: "/" });
+    Cookies.remove("sessionid", { path: "/" });
+    Cookies.remove("messages", { path: "/" });
     navigate("/login");
   };
 
-  // Value for the current user context
-  const contextValue = {
-    currentUser,
-    setCurrentUser: setAuth,
-    loading,
-    logout
-  };
+  const contextValue = useMemo(
+    () => ({
+      currentUser,
+      setCurrentUser: setAuth,
+      loading,
+      logout
+    }),
+    [currentUser, loading]
+  );
 
   return (
     <CurrentUserContext.Provider value={contextValue}>
-      {loading ? (
-        <MutatingDots
-          visible={true}
-          height="150"
-          width="150"
-          color="#F9B233"
-          secondaryColor="#F9B233"
-          radius="12.5"
-          ariaLabel="mutating-dots-loading"
-          wrapperStyle={{}}
-          wrapperClass="d-flex justify-content-center align-items-center h-100"
-        />
-      ) : (
-        children
-      )}
+      {!loading ? children : <LoadingSpinner />}
     </CurrentUserContext.Provider>
   );
 };

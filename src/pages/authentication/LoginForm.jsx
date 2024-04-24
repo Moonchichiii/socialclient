@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from '../../api/axiosDefaults';
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
@@ -11,7 +11,9 @@ const LoginForm = () => {
     password: ""
   });
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const { setCurrentUser } = useContext(CurrentUserContext);
+  
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -23,13 +25,15 @@ const LoginForm = () => {
     try {
       const { data } = await axiosInstance.post("/api/token/", credentials);
       setCurrentUser(data.user, data.access, data.refresh);
+      setIsLoading(false);
+      navigate('/dashboard');
     } catch (err) {
       setError("Oopps! Failed to log in, Please try again.");
     }
   };
 
   return (
-    <div className="container">
+    <div className="container auth-con">
       <div className="row justify-content-center">
         <div className="col-md-6">
           <h2 className="text-center mb-4">Sign in</h2>
@@ -61,12 +65,14 @@ const LoginForm = () => {
               />
             </Form.Group>
             {error && <Alert variant="danger">{error}</Alert>}
-            <Button
-              type="submit"
-              className={`mt-3 ${styles["form-button"]} btn btn-primary`}
-            >
-              Sign In
-            </Button>
+            <Button type="submit" disabled={isLoading} className={`mt-3 ${styles["form-button"]} btn btn-primary`}>
+        {isLoading ? (
+          <>
+            <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+            <span className="sr-only">Loading...</span>
+          </>
+        ) : "Sign In"}
+      </Button>
             <div className={`mt-3 ${styles["auth-switch"]}`}>
               Don't have an account? <Link to="/register">Sign up</Link>
             </div>

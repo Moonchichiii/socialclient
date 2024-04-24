@@ -30,8 +30,9 @@
 .navigationbar-brand {
   color: var(--navbrand-text-color);
   font-weight: bold;
-  font-size:2em;
+  font-size:3em;
   text-decoration: none;
+  margin-left: 2rem;
 }
 
 .navigationbar-brand:hover {
@@ -48,9 +49,12 @@
   background-color: var(--offcanvas-bg);
   z-index: 1050;
   transition: color 0.3s ease;
-  transition: transform 0.3s ease;  
-  
+  transition: transform 0.3s ease;    
   transform: translateY(-100%);
+}
+.active-link {
+  color: #f9b233; 
+  font-weight: bold;
 }
 
 .navigationbar-links.open {
@@ -90,6 +94,15 @@
   color: var(--hamburger-bars-color);
 }
 
+.profile-section {  
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  font-size:0.9rem;
+  margin-left: 1rem;
+}
+
+
 @media (max-width: 768px) {
 
   .icon-open {
@@ -107,6 +120,25 @@
     overflow-y: auto; 
     height: 100vh; 
   }
+  .profile-section {  
+  display: none;  
+}  
+
+.offcanvas-profile {
+  display: block;  
+  font-size:1.35rem;
+  
+  color:var(--navbar-link-color);
+}
+.offcanvas-profile img:hover { 
+  cursor: pointer;
+  scale: 1.4;
+}
+
+span {
+  margin-left:0.7rem;  
+}
+
 }
 
 @media (min-width: 768px) {
@@ -134,6 +166,12 @@
   }
 
   .navigationbar-toggler {
+    display: none;
+  }
+  .offcanvas-profile {
+   display: none;
+  }
+  .offcanvas-profile img:hover { 
     display: none;
   }
 }

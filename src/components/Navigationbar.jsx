@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -11,24 +12,45 @@ import {
   faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { useProfileData } from "../contexts/ProfileDataContext";
 import "../styles/Navigationbar.css";
-
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const { profileData, isLoading } = useProfileData();
+  const { logout } = useCurrentUser();
+
   const toggleMenu = () => setIsOpen(!isOpen);
-  const { logout } = useCurrentUser(); 
-  
+
   const handleLogout = (event) => {
-    event.preventDefault(); 
-    toggleMenu(); 
-    logout(); 
+    event.preventDefault();
+    toggleMenu();
+    logout();
   };
 
   return (
     <nav className="navigationbar">
-      <a href="/" className="navigationbar-brand">
+      <NavLink to="/dashboard" className="navigationbar-brand">
         Social Food Posting
-      </a>
+      </NavLink>
+      <div className="profile-section">
+        {isLoading ? (
+          <p>Loading profile...</p>
+        ) : profileData ? (
+          <div>
+            <p>
+              Welcome, <span>{profileData.username}</span>
+            </p>
+            <img
+              src={profileData.profile_image}
+              alt="profile"
+              style={{ width: 50, height: 50, borderRadius: "50%" }}
+            />
+          </div>
+        ) : (
+          <p>No profile data</p>
+        )}
+      </div>
+
       <div className="navigationbar-toggler" onClick={toggleMenu}>
         <FontAwesomeIcon
           icon={isOpen ? faTimes : faBars}
@@ -36,23 +58,44 @@ function Navigation() {
         />
       </div>
       <div className={`navigationbar-links ${isOpen ? "open" : ""}`}>
-        <a href="/home" onClick={toggleMenu}>
-          Home <FontAwesomeIcon icon={faHome} />
-        </a>
-        <a href="/feed" onClick={toggleMenu}>
-          Feed <FontAwesomeIcon icon={faList} />
-        </a>
-        <a href="/liked" onClick={toggleMenu}>
-          Liked <FontAwesomeIcon icon={faHeart} />
-        </a>
-        <a href="/post" onClick={toggleMenu}>
-          Post <FontAwesomeIcon icon={faPlus} />
-        </a>
-        <a href="/profile" onClick={toggleMenu}>
-          Profile <FontAwesomeIcon icon={faUser} />
-        </a>
-        <a href="/logout" onClick={handleLogout}>
-          Logout <FontAwesomeIcon icon={faSignOutAlt} />
+        <div className="offcanvas-profile">
+          <img
+            src={profileData.profile_image}
+            alt="profile"
+            style={{ width: 50, height: 50, borderRadius: "50%" }}
+          />
+          <span className="offcanvas-profile-name">{profileData.username}</span>
+        </div>
+        <NavLink to="/dashboard">
+          <span>
+            Home <FontAwesomeIcon icon={faHome} />
+          </span>
+        </NavLink>
+        <NavLink to="/dashboard/feed">
+          <span>
+            Feed <FontAwesomeIcon icon={faList} />
+          </span>
+        </NavLink>
+        <NavLink to="/dashboard/liked">
+          <span>
+            Liked <FontAwesomeIcon icon={faHeart} />
+          </span>
+        </NavLink>
+        <NavLink to="/dashboard/post">
+          <span>
+            Post <FontAwesomeIcon icon={faPlus} />
+          </span>
+        </NavLink>
+        <NavLink to="/dashboard/profile">
+          <span>
+            Profile <FontAwesomeIcon icon={faUser} />
+          </span>
+        </NavLink>
+
+        <a href="#" onClick={handleLogout}>
+          <span>
+            Logout <FontAwesomeIcon icon={faSignOutAlt} />
+          </span>
         </a>
       </div>
     </nav>

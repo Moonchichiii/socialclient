@@ -8,6 +8,8 @@
     --form-button-text-hover-color: #3a3a3a;
     --button-border-color: #DEDC23;
 }
+
+
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -21,9 +23,8 @@
     border-color: var(--button-border-color) !important;
     border-radius: 10px!important;
     width: 20%!important;
-    min-width: 5%!important;
-    overflow-inline: normal!important;
-    text-overflow: inherit;
+    /*min-width: 5%!important;*/
+    
 }
 .form-button:hover,
 .btn:hover .formButton:focus,

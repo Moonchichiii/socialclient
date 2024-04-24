@@ -1,8 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Form, Button, Spinner } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import axiosInstance from '../../api/axiosDefaults';
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { Link } from "react-router-dom";
+import { useAuth } from '../../hooks/AuthHook'; 
 import styles from "./AuthForms.module.css";
 
 const RegistrationForm = () => {
@@ -13,9 +12,7 @@ const RegistrationForm = () => {
     password2: ""
   });
   const [errors, setErrors] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const { setCurrentUser } = useContext(CurrentUserContext);
-  const navigate = useNavigate();
+  const { register, isLoading, error } = useAuth();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,28 +21,12 @@ const RegistrationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
     if (formData.password1 !== formData.password2) {
         setErrors({ ...errors, password2: "Oops! passwords do not match!" });
-        setIsLoading(false);
         return;
     }
-    try {
-        const { data } = await axiosInstance.post("/dj-rest-auth/registration/", formData);        
-        setCurrentUser(data.user);
-        Cookies.set("jwt_access_token", data.access_token, { path: '/' });
-        Cookies.set("jwt_refresh_token", data.refresh_token, { path: '/' });
-        navigate("/dashboard");
-    } catch (err) {
-        if (err.response && err.response.data) {
-            setErrors(err.response.data);
-        } else {
-            setErrors({ non_field_errors: ["Oops! Something went wrong. Please try again."] });
-        }
-    } finally {
-        setIsLoading(false);  
-    }
-};
+    register(formData);
+  };
 
   return (
     <div className="container">
@@ -53,10 +34,7 @@ const RegistrationForm = () => {
         <div className="col-md-6">
           <h2 className="text-center mb-4">Sign up</h2>
           <Form onSubmit={handleSubmit}>
-            <Form.Group
-              controlId="registrationUsername"
-              className={styles["form-group"]}
-            >
+            <Form.Group controlId="registrationUsername" className={styles["form-group"]}>
               <Form.Label className={styles["form-label"]}>Username</Form.Label>
               <Form.Control
                 type="text"
@@ -72,10 +50,7 @@ const RegistrationForm = () => {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group
-              controlId="registrationEmail"
-              className={styles["form-group"]}
-            >
+            <Form.Group controlId="registrationEmail" className={styles["form-group"]}>
               <Form.Label className={styles["form-label"]}>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -91,10 +66,7 @@ const RegistrationForm = () => {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group
-              controlId="registrationPassword"
-              className={styles["form-group"]}
-            >
+            <Form.Group controlId="registrationPassword" className={styles["form-group"]}>
               <Form.Label className={styles["form-label"]}>Password</Form.Label>
               <Form.Control
                 type="password"
@@ -106,14 +78,11 @@ const RegistrationForm = () => {
                 isInvalid={!!errors.password1}
               />
               <Form.Control.Feedback type="invalid">
-                {errors.password}
+                {errors.password1}
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group
-              controlId="registrationConfirmPassword"
-              className={styles["form-group"]}
-            >
+            <Form.Group controlId="registrationConfirmPassword" className={styles["form-group"]}>
               <Form.Label className={styles["form-label"]}>
                 Confirm Password
               </Form.Label>
@@ -132,8 +101,8 @@ const RegistrationForm = () => {
             </Form.Group>
 
             <Button type="submit" disabled={isLoading} className={`mt-3 ${styles["form-button"]} btn btn-primary`}>
-        {isLoading ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> : "Create Account"}
-      </Button>
+              {isLoading ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> : "Create Account"}
+            </Button>
             <div className={`mt-3 ${styles["auth-switch"]}`}>
               Already have an account? <Link to="/login">Sign In</Link>
             </div>
@@ -145,9 +114,3 @@ const RegistrationForm = () => {
 };
 
 export default RegistrationForm;
-
-
-
-
-
-  

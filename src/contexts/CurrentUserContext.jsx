@@ -9,30 +9,27 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axiosDefaults";
 import Cookies from "js-cookie";
 import LoadingSpinner from "../components/LoadingSpinner";
-
+// Context for managing the current user
 export const CurrentUserContext = createContext(null);
 
+// Custom hook for accessing the current user context
 export const useCurrentUser = () => {
   const context = useContext(CurrentUserContext);
   if (!context) {
-    throw new Error("");
+    throw new Error("useCurrentUser must be used within a CurrentUserProvider");
   }
   return context;
 };
 
+// Provider component for the current user context
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
   const navigate = useNavigate();
 
+  // Function for setting the authentication state
   const setAuth = (user, accessToken, refreshToken) => {
     setCurrentUser(user);
-    Cookies.set("jwt_access_token", accessToken, {
-      expires: 1 / 24,
-      path: "/"
-    });
-    Cookies.set("jwt_refresh_token", refreshToken, { expires: 5, path: "/" });
     navigate("/dashboard");
   };
 
@@ -43,17 +40,17 @@ export const CurrentUserProvider = ({ children }) => {
       return;
     }
 
-    axiosInstance
-      .get("/dj-rest-auth/user/")
+    // Fetch the current user data from the server
+    axiosInstance.get("/dj-rest-auth/user/")
       .then((response) => {
         setCurrentUser(response.data);
         setLoading(false);
       })
       .catch((error) => {
         if (error.response?.status === 401) {
-          console.log("Session expired. Please log in again.");
+            console.log("Session expired. Please log in again.");
         } else {
-          console.error("Validation error.", error);
+            console.error("Validation error.", error);
         }
         setCurrentUser(null);
         navigate("/login");
@@ -61,66 +58,12 @@ export const CurrentUserProvider = ({ children }) => {
       });
   }, [navigate]);
 
-  useEffect(() => {
-    const requestInterceptor = axiosInstance.interceptors.request.use(
-      (config) => {
-        const csrfToken = Cookies.get("csrftoken");
-        const accessToken = Cookies.get("jwt_access_token");
-        if (csrfToken) {
-          config.headers["X-CSRFToken"] = csrfToken;
-        }
-        if (accessToken) {
-          config.headers["Authorization"] = `Bearer ${accessToken}`;
-        }
-        return config;
-      },
-      (error) => Promise.reject(error)
-    );
-
-    const responseInterceptor = axiosInstance.interceptors.response.use(
-      (response) => response,
-      async (error) => {
-        if (error.response?.status === 401) {
-          try {
-            const { data } = await axiosInstance.post("api/token/refresh/");
-            Cookies.set("jwt_access_token", data.access);
-            return axiosInstance.request(error.config);
-          } catch (refreshError) {
-            console.log("Unable to refresh token, please log in again.");
-            setCurrentUser(null);
-            navigate("/login");
-            return Promise.reject(refreshError);
-          }
-        }
-        return Promise.reject(error);
-      }
-    );
-
-    return () => {
-      axiosInstance.interceptors.request.eject(requestInterceptor);
-      axiosInstance.interceptors.response.eject(responseInterceptor);
-    };
-  }, [navigate]);
-
-  const logout = () => {
-    setCurrentUser(null);
-    Cookies.remove("jwt_access_token", { path: "/" });
-    Cookies.remove("jwt_refresh_token", { path: "/" });
-    Cookies.remove("csrftoken", { path: "/" });
-    Cookies.remove("sessionid", { path: "/" });
-    Cookies.remove("messages", { path: "/" });
-    navigate("/login");
-  };
-
-  const contextValue = useMemo(
-    () => ({
-      currentUser,
-      setCurrentUser: setAuth,
-      loading,
-      logout
-    }),
-    [currentUser, loading]
-  );
+  // Memoize the context value to avoid unnecessary re-renders
+  const contextValue = useMemo(() => ({
+    currentUser,
+    setCurrentUser: setAuth,
+    loading
+  }), [currentUser, loading]);
 
   return (
     <CurrentUserContext.Provider value={contextValue}>

@@ -11,13 +11,17 @@ import {
   faUser,
   faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { useAuth } from "../hooks/AuthHook";
 import { useProfileData } from "../contexts/ProfileDataContext";
 import "../styles/Navigationbar.css";
+
 function Navigation() {
+
   const [isOpen, setIsOpen] = useState(false);
+  
   const { profileData, isLoading } = useProfileData();
-  const { logout } = useCurrentUser();
+  
+  const { logout } = useAuth();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 

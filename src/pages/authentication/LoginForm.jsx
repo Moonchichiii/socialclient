@@ -1,8 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Form, Button, Alert, Spinner } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import axiosInstance from '../../api/axiosDefaults';
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/AuthHook"; 
 import styles from "./AuthForms.module.css";
 
 const LoginForm = () => {
@@ -10,26 +9,15 @@ const LoginForm = () => {
     username: "",
     password: ""
   });
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const { setCurrentUser } = useContext(CurrentUserContext);
-  
-  const navigate = useNavigate();
+  const { login, isLoading, error } = useAuth();
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const { data } = await axiosInstance.post("/api/token/", credentials);
-      setCurrentUser(data.user, data.access, data.refresh);
-      setIsLoading(false);
-      navigate('/dashboard');
-    } catch (err) {
-      setError("Oopps! Failed to log in, Please try again.");
-    }
+    login(credentials.username, credentials.password);
   };
 
   return (
@@ -50,10 +38,7 @@ const LoginForm = () => {
               />
             </Form.Group>
 
-            <Form.Group
-              controlId="formBasicPassword"
-              className={styles["form-group"]}
-            >
+            <Form.Group controlId="formBasicPassword" className={styles["form-group"]}>
               <Form.Label className={styles["form-label"]}>Password</Form.Label>
               <Form.Control
                 type="password"
@@ -66,13 +51,13 @@ const LoginForm = () => {
             </Form.Group>
             {error && <Alert variant="danger">{error}</Alert>}
             <Button type="submit" disabled={isLoading} className={`mt-3 ${styles["form-button"]} btn btn-primary`}>
-        {isLoading ? (
-          <>
-            <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
-            <span className="sr-only">Loading...</span>
-          </>
-        ) : "Sign In"}
-      </Button>
+              {isLoading ? (
+                <>
+                  <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+                  <span className="sr-only">Loading...</span>
+                </>
+              ) : "Sign In"}
+            </Button>
             <div className={`mt-3 ${styles["auth-switch"]}`}>
               Don't have an account? <Link to="/register">Sign up</Link>
             </div>

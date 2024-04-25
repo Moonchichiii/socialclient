@@ -13,12 +13,9 @@ export const ProfileProvider = ({ children }) => {
   const [profileData, setProfileData] = useState({});
   // State to track loading state
   const [isLoading, setIsLoading] = useState(true);
-  // State to store error message
   const [error, setError] = useState(null);
-  // Access the current user from CurrentUserContext
   const currentUser = useCurrentUser();
 
-  // Function to fetch profile data from the API
   const fetchProfileData = async () => {
     try {
       const response = await axiosInstance.get("/api/profiles/current/");
@@ -30,27 +27,29 @@ export const ProfileProvider = ({ children }) => {
     }
   };
 
-  // Fetch profile data when the currentUser changes
+
+
+  
   useEffect(() => {
     const accessToken = Cookies.get('jwt_access_token');
     const refreshToken = Cookies.get('jwt_refresh_token');
 
     if (currentUser && accessToken && refreshToken) {
+      console.log("Fetching profile data...");
       fetchProfileData();
     } else {    
       setIsLoading(false);
     }
   }, [currentUser]);
 
-  // Function to refresh the profile data
   const refreshProfileData = () => {
     if (currentUser) {
+      console.log("Refreshing profile data...");
       setIsLoading(true); 
       fetchProfileData();
     }
   };
 
-  // Value to be provided to the context
   const value = {
     profileData,
     isLoading,

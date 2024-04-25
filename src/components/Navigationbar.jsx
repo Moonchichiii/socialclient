@@ -16,15 +16,13 @@ import { useProfileData } from "../contexts/ProfileDataContext";
 import "../styles/Navigationbar.css";
 
 function Navigation() {
-
   const [isOpen, setIsOpen] = useState(false);
-  
   const { profileData, isLoading } = useProfileData();
-  
   const { logout } = useAuth();
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  
 
+  const toggleMenu = () => setIsOpen(!isOpen);
   const handleLogout = (event) => {
     event.preventDefault();
     toggleMenu();
@@ -41,11 +39,9 @@ function Navigation() {
           <p>Loading profile...</p>
         ) : profileData ? (
           <div>
-            <p>
-              Welcome, <span>{profileData.username}</span>
-            </p>
+            <p>Welcome, <span>{profileData.username}</span></p>
             <img
-              src={profileData.profile_image}
+              src={profileData.owner_image} 
               alt="profile"
               style={{ width: 50, height: 50, borderRadius: "50%" }}
             />

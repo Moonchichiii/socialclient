@@ -9,10 +9,9 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axiosDefaults";
 import Cookies from "js-cookie";
 import LoadingSpinner from "../components/LoadingSpinner";
-// Context for managing the current user
+
 export const CurrentUserContext = createContext(null);
 
-// Custom hook for accessing the current user context
 export const useCurrentUser = () => {
   const context = useContext(CurrentUserContext);
   if (!context) {
@@ -21,18 +20,16 @@ export const useCurrentUser = () => {
   return context;
 };
 
-// Provider component for the current user context
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Function for setting the authentication state
   const setAuth = (user, accessToken, refreshToken) => {
     setCurrentUser(user);
     navigate("/dashboard");
   };
-
+console.log(currentUser);
   useEffect(() => {
     const accessToken = Cookies.get("jwt_access_token");
     if (!accessToken) {
@@ -40,7 +37,6 @@ export const CurrentUserProvider = ({ children }) => {
       return;
     }
 
-    // Fetch the current user data from the server
     axiosInstance.get("/dj-rest-auth/user/")
       .then((response) => {
         setCurrentUser(response.data);

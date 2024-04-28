@@ -13,6 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../hooks/AuthHook";
 import { useProfileData } from "../contexts/ProfileDataContext";
+import LoadingSpiner from "./LoadingSpinner";
 import "../styles/Navigationbar.css";
 
 function Navigation() {
@@ -29,6 +30,14 @@ function Navigation() {
     logout();
   };
 
+  if (isLoading) {
+    return <LoadingSpiner />;
+}
+
+if (!profileData) {
+    return <p>No profile data available</p>;
+}
+
   return (
     <nav className="navigationbar">
       <NavLink to="/dashboard" className="navigationbar-brand">
@@ -39,9 +48,8 @@ function Navigation() {
           <p>Loading profile...</p>
         ) : profileData ? (
           <div>
-            <p>Welcome, <span>{profileData.username}</span></p>
-            <img
-              src={profileData.owner_image} 
+            <p>Welcome, {profileData.username}</p>
+            <img src={profileData.profile_image} 
               alt="profile"
               style={{ width: 50, height: 50, borderRadius: "50%" }}
             />

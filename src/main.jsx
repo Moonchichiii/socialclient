@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import { CurrentUserProvider } from './contexts/CurrentUserContext';
-import { ProfileProvider } from './contexts/ProfileDataContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
@@ -12,12 +11,8 @@ root.render(
   <React.StrictMode>
     <Router>
       <CurrentUserProvider>        
-      <ProfileProvider>
         <App />
-        </ProfileProvider>
       </CurrentUserProvider>
     </Router>
   </React.StrictMode>
 );
-
-

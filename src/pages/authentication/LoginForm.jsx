@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { Form, Button, Alert, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../hooks/AuthHook"; 
+import { useAuth } from "../../hooks/useAuth"; 
 import styles from "./AuthForms.module.css";
 
 const LoginForm = () => {
-  const [credentials, setCredentials] = useState({
-    username: "",
-    password: ""
-  });
+  const [credentials, setCredentials] = useState({ username: "", password: "" });
   const { login, isLoading, error } = useAuth();
 
   const handleChange = (e) => {
@@ -23,11 +20,12 @@ const LoginForm = () => {
   return (
     <div className="container auth-con">
       <div className="row justify-content-center">
-        <div className="col-md-6">
-          <h2 className="text-center mb-4">Sign in</h2>
+        <div className={`col-md-6 ${styles['form-container']}`}>
+        <h1 className={`text-center mb-4 ${styles['form-title']}`}>Social Food Posting</h1>
+          <h2 className={`text-center mb-4 ${styles['form-title']}`}>Sign in</h2>
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="Username" className={styles["form-group"]}>
-              <Form.Label className={styles["form-label"]}>Username</Form.Label>
+            <Form.Group controlId="Username" className={styles['form-group']}>
+              <Form.Label className={styles['form-label']}>Username</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter username"
@@ -35,11 +33,13 @@ const LoginForm = () => {
                 required
                 value={credentials.username}
                 onChange={handleChange}
+                className={styles['form-control']}
               />
+              
             </Form.Group>
 
-            <Form.Group controlId="formBasicPassword" className={styles["form-group"]}>
-              <Form.Label className={styles["form-label"]}>Password</Form.Label>
+            <Form.Group controlId="formBasicPassword" className={styles['form-group']}>
+              <Form.Label className={styles['form-label']}>Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Enter password"
@@ -47,19 +47,25 @@ const LoginForm = () => {
                 required
                 value={credentials.password}
                 onChange={handleChange}
+                className={styles['form-control']}
               />
             </Form.Group>
-            {error && <Alert variant="danger">{error}</Alert>}
-            <Button type="submit" disabled={isLoading} className={`mt-3 ${styles["form-button"]} btn btn-primary`}>
+            <div className="d-flex justify-content-center">
+            {error && <Alert variant="warning" className={styles['error-alert']}>{error}</Alert>}
+
+            <Button type="submit" disabled={isLoading} className={`mt-3 ${styles['form-button']} btn btn-primary`}>
               {isLoading ? (
                 <>
                   <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
-                  <span className="sr-only">Loading...</span>
+                  Loading...
                 </>
               ) : "Sign In"}
             </Button>
-            <div className={`mt-3 ${styles["auth-switch"]}`}>
+            </div>
+            <div className="d-flex justify-content-center">
+            <div className={`mt-3 ${styles['auth-switch']}`}>
               Don't have an account? <Link to="/register">Sign up</Link>
+            </div>
             </div>
           </Form>
         </div>

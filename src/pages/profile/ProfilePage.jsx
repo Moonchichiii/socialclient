@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { useProfileData } from '../../contexts/ProfileDataContext';
-import LoadingSpinner from '../../components/LoadingSpinner';
-import { Form, Button, Alert, Spinner } from "react-bootstrap";
+import { Form, Button, Alert, Image } from "react-bootstrap";
 import axiosInstance from '../../api/axiosDefaults';
 import styles from '../../styles/ProfilePage.module.css';
-import { ColorRing } from 'react-loader-spinner';
-
+import LoadingSpinner from '../../components/LoadingSpinner';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 const ProfilePage = () => {
-    const { profileData, isLoading, error, refreshProfileData } = useProfileData();
+    const { currentUser, isLoading, verifyAndFetchUser } = useCurrentUser();
     const [editData, setEditData] = useState({
-        username: profileData?.username || '',
-        image: null
+      display_name: '',  
+      profile_image: null,
+      bio: '',
     });
-    const [successMessage, setSuccessMessage] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
-    const [imagePreview, setImagePreview] = useState(profileData?.image?.url || '');
+    const [imagePreview, setImagePreview] = useState('');
+    const [alert, setAlert] = useState({ type: '', message: '' });
 
     useEffect(() => {
-       
-        if (profileData) {
+        if (currentUser) {
             setEditData({
-                username: profileData.username || '',
-                image: null
+                display_name: currentUser.display_name || currentUser.username, 
+                profile_image: currentUser.image,
+                bio: currentUser.bio || '',
             });
-            setImagePreview(profileData.image?.url || '');
+            setImagePreview(currentUser.image || '/default.png');
+        } else {            
+            verifyAndFetchUser();
         }
-    }, [profileData]);
+    }, [currentUser, verifyAndFetchUser]);
 
     const handleInputChange = (e) => {
         setEditData({ ...editData, [e.target.name]: e.target.value });
@@ -34,84 +34,77 @@ const ProfilePage = () => {
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
+        setEditData(prev => ({ ...prev, profile_image: file }));
         if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => setImagePreview(e.target.result);
-            reader.readAsDataURL(file);
-            setEditData({ ...editData, image: file });
+            setImagePreview(URL.createObjectURL(file));
         }
     };
 
-    const handleUpdateProfile = async (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        if (!profileData) {
-            setErrorMessage("No profile data available.");
-            return;
-        }
-
         const formData = new FormData();
-        formData.append('username', editData.username);
-        if (editData.image) {
-            formData.append('image', editData.image);
+        formData.append('display_name', editData.display_name);
+        formData.append('bio', editData.bio);
+        if (editData.profile_image) {
+          formData.append('profile_image', editData.profile_image);
         }
 
         try {
-            const response = await axiosInstance.put("/api/profiles/current/", formData, {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            });
-            setSuccessMessage('Profile updated successfully!');
-            refreshProfileData(); // To refresh profile data in context
+          await axiosInstance.put(`/api/profiles/${currentUser?.id}/`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+          });          
+          await verifyAndFetchUser();
+          setAlert({ type: 'success', message: 'Profile updated successfully!' });
         } catch (error) {
-            setErrorMessage("Error updating profile: " + error.message);
+          setAlert({ type: 'danger', message: 'Error updating profile: ' + (error.response?.data?.detail || 'Failed to update profile.') });
         }
     };
 
-    if (isLoading) return <LoadingSpinner />;
-    if (error) return <div>Error: {error}</div>;
-console.log(profileData);
+    if (!currentUser) {
+        return <LoadingSpinner />;
+    }
+
     return (
         <div className={styles.profilePage}>
-            <h1>Profile Page - Edit Profile</h1>
-            {successMessage && <Alert variant="success">{successMessage}</Alert>}
-            {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-            <div className={styles.profileUpdateSection}>
-                {profileData ? (
-                    <div>
-                        <img src={imagePreview || profileData.profile_image} alt="Profile" className={styles.profileImage} />
-                        <p>Profile Name: {profileData.username}</p>
-                    </div>
-                ) : (
-                    <p>No profile data</p>
-                )}
-                <Form onSubmit={handleUpdateProfile} className={styles.profileUpdateForm}>
-                    <Form.Group controlId="UpdateProfile">
-                        <Form.Label>Change Profile Name</Form.Label>
+            <h1>Profile Page - Update Profile</h1>
+            {alert.message && <Alert variant={alert.type}>{alert.message}</Alert>}
+            {!isLoading ? (
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group controlId="display_name">
+                        <Form.Label className='mt-2' >Update Profile Name</Form.Label>
                         <Form.Control
                             type="text"
-                            name="username"
-                            value={editData.username}
+                            name="display_name"
+                            value={editData.display_name}
                             onChange={handleInputChange}
                         />
                     </Form.Group>
-                    <Form.Group controlId="formBasicFile">
-                        <Form.Label>Update Profile Image</Form.Label>
+                    <Form.Group controlId="bio">
+                        <Form.Label className='mt-2'>Update Bio</Form.Label>
                         <Form.Control
-                            type="file"
-                            name="image"
-                            onChange={handleImageChange}
+                            as="textarea"
+                            rows={3}
+                            name="bio"
+                            value={editData.bio}
+                            onChange={handleInputChange}
                         />
                     </Form.Group>
-                    <Button type="submit" disabled={isLoading || !editData.username.trim()} className="mt-3 btn btn-primary">
-                        {isLoading ? (
-                            <>
-                                <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
-                                <span className="sr-only">Loading...</span>
-                            </>
-                        ) : "Update Profile"}
+                    <Form.Group controlId="image">
+                        <Form.Label className='mt-2'>Update Profile Image</Form.Label>
+                        <Form.Control
+                            type="file"
+                            name="profile_image"
+                            onChange={handleImageChange}
+                        />
+                        {imagePreview && (
+                            <Image src={imagePreview} alt="Profile" style={{ width: 100, height: 100, borderRadius: "50%" }} />
+                        )}
+                    </Form.Group>
+                    <Button type="submit" className="mt-3 btn btn-primary">
+                        Update Profile
                     </Button>
-
                 </Form>
-            </div>
+            ) : <LoadingSpinner />}
         </div>
     );
 };

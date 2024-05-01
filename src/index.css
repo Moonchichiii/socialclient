@@ -3,11 +3,16 @@
   --box-background-color: #534E90;
   --text-color-white: #FFFFFF;
   --text-color-dark: #8a8a8a;  
-  --buttons-bg-color: #DEDC23;
-  --buttons-bg-hover-color: #DEDC23; 
   
+   
   --text-color-primary: var(--text-color-white);
   --text-color-secondary:var(--text-color-dark);
+
+  --form-buttons-bg-hover-color: #DEDC23;
+  --form-button-text-color:#DEDC23;
+  --form-button-text-hover-color: #3a3a3a;
+  --button-border-color: #DEDC23;
+
   /* Typography */
   --font-headings: 'Montserrat', sans-serif;
   --font-text: 'Barlow Condensed', sans-serif;
@@ -21,37 +26,61 @@
   margin: 0;
 }
 
-body {  
+body,html {  
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;  
   font-family: var(--font-text);
   background-color: var(--background-color-body);
   color: var(--text-color-primary);
 }
+.container, 
+.auth-con {    
+    margin-top:10rem;
+        
+        
+}
 
-#root {  
+/* #root {    
   display: flex;
   flex-direction: column;
   min-height: 100vh;  
+  max-width: 90%;
   background-color: var(--background-color-body);
-}
+} */
 
 main {
   flex-grow: 1;
   padding: 1rem;
+  max-height: 100vh;  
   display: flex;
   flex-direction: column;  
   margin-right: auto;
   margin-left: auto;
 }
 
-  
-button {
-  background-color: var(--button-bg);
-  color: var(--text-color-white);
+
+.button-primary, 
+.btn, 
+.btn-primary,
+.btn:hover,
+.formButton {
+  background-color: transparent !important;
+  color: var(--form-button-text-color) !important;
+  border-color: var(--button-border-color) !important;
+  border-radius: 10px!important;
+  width:fit-content;
+  cursor: pointer;  
 }
 
-button:hover {
-  background-color: var(--button-bg);
-  color: var(--text-color-white);
+.button-primary, 
+.btn:hover, 
+.btn-primary:hover,
+.formButton:focus,
+.btn:focus,
+.btn:active {
+  background-color: var(--form-buttons-bg-hover-color) !important;
+  color: var(--form-button-text-hover-color) !important;  
 }
 
 h1,
@@ -67,3 +96,4 @@ p {
   font-family: var(--text-color-secondary);
   color: var(--text-color-primary);
 }
+

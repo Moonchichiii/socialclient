@@ -22,9 +22,11 @@ export const ProfileProvider = ({ children }) => {
         }
     }, [currentUser]);
 
+    
     return (
         <ProfileDataContext.Provider value={{ profileData, setProfileData }}>
             {children}
         </ProfileDataContext.Provider>
     );
 };
+

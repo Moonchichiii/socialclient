@@ -49,3 +49,20 @@
     color: var(--form-button-text-hover-color);
     border-color: var(--form-buttons-bg-hover-color);
 }
+
+
+
+.btn, .btn-primary {
+    background-color: transparent !important;
+    color: var(--form-button-text-color) !important;
+    border: 1px solid var(--button-border-color) !important;
+    border-radius: 10px !important;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .btn, .btn-primary:hover {
+    background-color: var(--form-buttons-bg-hover-color) !important;
+    color: var(--form-button-text-hover-color) !important;
+  }

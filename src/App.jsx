@@ -41,7 +41,7 @@ const App = () => {
         <Route path="*" element={<Navigate replace to="/dashboard" />} />
       </Route>
     ) : (
-      <>      
+      <> 
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegistrationForm />} />
         <Route path="*" element={<Navigate replace to="/login" />} />      

@@ -1,0 +1,27 @@
+:root {
+    --search-bar-form-bg: #535353;
+    --search-bar-input-bg: #535353;
+    
+}
+
+
+
+
+.searchForm {
+    background-color: var(--search-bar-input-bg);
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.searchInput {
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 8px;
+    border: 2px solid var(--footer-link-color);
+    color: var(--footer-text-color);
+    background-color: transparent;
+    border-radius: 8px;
+}

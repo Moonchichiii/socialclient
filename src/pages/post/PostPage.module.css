@@ -1,0 +1,31 @@
+:root {
+    --auth-switch-link-color: #DEDC23;
+    --auth-switch-link-hover: #FFFFFF;
+    --auth-switch-text-color: #F9B233;           
+}
+
+.postPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.form-group {
+    max-width: 300px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 1.5rem;
+}
+.form-label {
+    color: var(--text-color-dark);
+}
+
+
+.error-alert {
+    margin-top:5px;
+    text-align: center;
+    
+}

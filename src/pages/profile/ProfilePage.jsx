@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Alert, Image } from "react-bootstrap";
 import axiosInstance from '../../api/axiosDefaults';
-import styles from '../../styles/ProfilePage.module.css';
+import styles from './ProfilePage.module.css';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
@@ -22,7 +22,7 @@ const ProfilePage = () => {
                 profile_image: currentUser.image,
                 bio: currentUser.bio || '',
             });
-            setImagePreview(currentUser.image || '/default.png');
+            setImagePreview(currentUser.image);
         } else {            
             verifyAndFetchUser();
         }
@@ -42,23 +42,23 @@ const ProfilePage = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        
         const formData = new FormData();
         formData.append('display_name', editData.display_name);
         formData.append('bio', editData.bio);
         if (editData.profile_image) {
-          formData.append('profile_image', editData.profile_image);
+            formData.append('image', editData.profile_image, editData.profile_image.name);
         }
-
-        try {
-          await axiosInstance.put(`/api/profiles/${currentUser?.id}/`, formData, {
+        
+        axiosInstance.put(`/api/profiles/${currentUser.profile_id}/`, formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
-          });          
-          await verifyAndFetchUser();
-          setAlert({ type: 'success', message: 'Profile updated successfully!' });
-        } catch (error) {
-          setAlert({ type: 'danger', message: 'Error updating profile: ' + (error.response?.data?.detail || 'Failed to update profile.') });
-        }
-    };
+        }).then(response => {
+            verifyAndFetchUser(); 
+        }).catch(error => {
+            console.error("Failed to update profile:", error);
+        });
+    };        
+    
 
     if (!currentUser) {
         return <LoadingSpinner />;

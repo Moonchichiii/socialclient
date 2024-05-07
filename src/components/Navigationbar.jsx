@@ -55,8 +55,8 @@ function Navigation() {
             {currentUser.image && (
               <img
                 src={currentUser.image}
-                alt="Profile"
-                style={{ width: 50, height: 50, borderRadius: "50%" }}
+                alt="Profile Picture"
+                style={{ width: 100, height: 100, borderRadius: "50%" }}
               />
             )}
           </div>

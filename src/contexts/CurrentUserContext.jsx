@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect, useCallback, useMemo } from 'react';
+import React, { createContext, useState, useContext, useCallback, useMemo } from 'react';
 import axiosInstance from '../api/axiosDefaults';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -30,17 +30,12 @@ export const CurrentUserProvider = ({ children }) => {
                     Authorization: `Bearer ${accessToken}`
                 }
             };
-            console.log("Before token verification");
             await axiosInstance.post("/api/token/verify/", { token: accessToken }, config);
-            console.log("After token verification");
             const response = await axiosInstance.get("/api/current-user/", config);
-            console.log("After fetching user data");
             setCurrentUser(response.data);
-            console.log("user data set:", response.data);
         } catch (error) {
             console.error("Error verifying token or fetching user data:", error);
             setError(error.toString());
-            console.log(error.response?.status);
             setMessage("Session ended. Please login again.");
             navigate("/login");
         } finally {

@@ -3,8 +3,10 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../api/axiosDefaults';
 import styles from './PostPage.module.css';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';  
 
 const PostPage = () => {
+    const { currentUser } = useCurrentUser();  
     const [postData, setPostData] = useState({
         title: '',
         ingredients: '',
@@ -12,6 +14,7 @@ const PostPage = () => {
         description: '',
         cookingTime: '',
         image: null,
+        profile_id:''
     });
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
@@ -28,23 +31,28 @@ const PostPage = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const formData = new FormData();
-        Object.keys(postData).forEach(key => {
-            formData.append(key, postData[key]);
-        });
-
-        setIsLoading(true);
+        const formData = new FormData();      
+        formData.append('title', postData.title);
+        formData.append('ingredients', postData.ingredients);
+        formData.append('recipe', postData.recipe);
+        formData.append('description', postData.description);
+        formData.append('cooking_time', postData.cookingTime);
+        if (postData.image) {
+            formData.append('image', postData.image, postData.image.name);
+        }
+    
         try {
             await axiosInstance.post('/api/posts/', formData, {
-                headers: { 'Content-Type': 'multipart/form-data' },
+                headers: { 'Content-Type': 'multipart/form-data' }
             });
-            navigate('/feed'); 
+            navigate('/feed');  
             setError('');
         } catch (error) {
+            console.error('Error:', error);
             setError('Failed to add post! Please try again!');
         }
-        setIsLoading(false);
     };
+
 
     return (
         <div className={styles.postPage}>

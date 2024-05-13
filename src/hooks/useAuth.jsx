@@ -34,8 +34,7 @@ export function useAuth() {
     };
   }, []);
 
-  const setCookies = (accessToken, refreshToken) => {
-    console.log("Setting tokens in cookies:", { accessToken, refreshToken });
+  const setCookies = (accessToken, refreshToken) => {    
     Cookies.set("jwt_access_token", accessToken, { path: '/', expires: 1 / 24 });
     Cookies.set("jwt_refresh_token", refreshToken, { path: '/', expires: 7 });
 };

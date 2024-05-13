@@ -1,24 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Form, Button, Alert } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../api/axiosDefaults';
-import styles from './PostPage.module.css';
-import { useCurrentUser } from '../../contexts/CurrentUserContext';  
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import styles from '../../styles/PostPage.module.css';
 
 const PostPage = () => {
-    const { currentUser } = useCurrentUser();  
+    const { currentUser } = useCurrentUser();
+    const { postId } = useParams(); 
     const [postData, setPostData] = useState({
         title: '',
         ingredients: '',
         recipe: '',
         description: '',
         cookingTime: '',
-        image: null,
-        profile_id:''
+        image: null
     });
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (postId) {
+            
+            setIsLoading(true);
+            axiosInstance.get(`/api/posts/${postId}/`)
+                .then(response => {
+                    setPostData({
+                        title: response.data.title,
+                        ingredients: response.data.ingredients,
+                        recipe: response.data.recipe,
+                        description: response.data.description,
+                        cookingTime: response.data.cooking_time,
+                        image: response.data.image
+                    });
+                })
+                .catch(error => {
+                    console.error('Failed to fetch post:', error);
+                    setError('Failed to fetch post data.');
+                })
+                .finally(() => setIsLoading(false));
+        }
+    }, [postId]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,34 +54,33 @@ const PostPage = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const formData = new FormData();      
-        formData.append('title', postData.title);
-        formData.append('ingredients', postData.ingredients);
-        formData.append('recipe', postData.recipe);
-        formData.append('description', postData.description);
-        formData.append('cooking_time', postData.cookingTime);
-        if (postData.image) {
-            formData.append('image', postData.image, postData.image.name);
-        }
-    
+        const formData = new FormData();
+        Object.entries(postData).forEach(([key, value]) => {
+            if (value !== null) formData.append(key, value);
+        });
+
+        const config = {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        };
+        
         try {
-            await axiosInstance.post('/api/posts/', formData, {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            });
-            navigate('/feed');  
+            const endpoint = postId ? `/api/posts/${postId}/` : '/api/posts/';
+            const method = postId ? 'put' : 'post';
+            await axiosInstance[method](endpoint, formData, config);
+            navigate('/dashboard/feed');  
             setError('');
         } catch (error) {
             console.error('Error:', error);
-            setError('Failed to add post! Please try again!');
+            setError('Failed to process post! Please try again!');
         }
     };
 
-
     return (
         <div className={styles.postPage}>
-              <h1>Create a New Post</h1>
-              {error && <Alert variant="danger">{error}</Alert>}
-              <Form onSubmit={handleSubmit}>
+            <h1>{postId ? 'Edit Post' : 'Create a New Post'}</h1>
+            {error && <Alert variant="danger">{error}</Alert>}
+            <Form onSubmit={handleSubmit}>
+
                 <Form.Group controlId="postTitle">
                   <Form.Label>Title</Form.Label>
                   <Form.Control
@@ -71,7 +93,7 @@ const PostPage = () => {
                 </Form.Group>
         
                 <Form.Group controlId="postIngredients">
-                  <Form.Label>Ingredients</Form.Label>
+                  <Form.Label className='mt-2'>Ingredients</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={3}
@@ -83,7 +105,7 @@ const PostPage = () => {
                 </Form.Group>
         
                 <Form.Group controlId="postRecipe">
-                  <Form.Label>Recipe</Form.Label>
+                  <Form.Label className='mt-2'>Recipe</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={3}
@@ -95,7 +117,7 @@ const PostPage = () => {
                 </Form.Group>
         
                 <Form.Group controlId="postDescription">
-                  <Form.Label>Description</Form.Label>
+                  <Form.Label className='mt-2'>Description</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={2}
@@ -107,7 +129,7 @@ const PostPage = () => {
                 </Form.Group>
         
                 <Form.Group controlId="postCookingTime">
-                  <Form.Label>Cooking Time (minutes)</Form.Label>
+                  <Form.Label className='mt-2'>Cooking Time (minutes)</Form.Label>
                   <Form.Control
                     type="number"
                     placeholder="Cooking time"
@@ -118,7 +140,7 @@ const PostPage = () => {
                 </Form.Group>
         
                 <Form.Group controlId="postImage">
-                  <Form.Label>Image</Form.Label>
+                  <Form.Label className='mt-2'>Image</Form.Label>
                   <Form.Control
                     type="file"
                     name="image"
@@ -126,14 +148,12 @@ const PostPage = () => {
                   />
                 </Form.Group>
         
-                <Button variant="primary" type="submit" disabled={isLoading}>
-                  {isLoading ? 'Posting...' : 'Post'}
+                <Button className='mt-2' variant="primary" type="submit" disabled={isLoading}>
+                    {isLoading ? 'Submitting.....' : (postId ? 'Update' : 'Post')}
                 </Button>
-              </Form>
-            </div>
-          );
-        };
-   
+            </Form>
+        </div>
+    );
+};
+
 export default PostPage;
-
-

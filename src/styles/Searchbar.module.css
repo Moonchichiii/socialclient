@@ -1,27 +1,27 @@
 :root {
-    --search-bar-form-bg: #535353;
-    --search-bar-input-bg: #535353;
-    
+    --background-color-body: #582974;
+    --input-bkg: #FFFFFF;
+    --text-color-dark: #4a4a4a;
+    --form-buttons-bg-hover-color: #DEDC23;
+    --form-button-text-color: #DEDC23;
+    --form-button-text-hover-color: #3a3a3a;
+    --button-border-color: #DEDC23;
 }
-
-
-
-
 .searchForm {
-    background-color: var(--search-bar-input-bg);
+    background-color: var(--background-color-body);
     padding: 10px;
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: none;
 }
-
 .searchInput {
     flex-grow: 1;
     margin-right: 10px;
     padding: 8px;
-    border: 2px solid var(--footer-link-color);
-    color: var(--footer-text-color);
-    background-color: transparent;
+    border: 1px solid var(--box-background-color);
+    color:var(--text-color-dark);
+    background-color: var(--input-bkg);
     border-radius: 8px;
 }

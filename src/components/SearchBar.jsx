@@ -1,12 +1,11 @@
 import React, { useState, useCallback } from 'react';
 import _ from 'lodash';
+import styles from '../styles/Searchbar.module.css';
 
 const SearchBar = ({ onSearch }) => {
     const [input, setInput] = useState('');
 
-    
     const debouncedSearch = useCallback(_.debounce(query => {
-        console.log('Debounced search:', query);
         onSearch(query);
     }, 300), [onSearch]);
 
@@ -18,20 +17,20 @@ const SearchBar = ({ onSearch }) => {
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log('Form submitted:', input);
+        event.preventDefault();        
         onSearch(input);
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.searchForm}>
             <input
                 type="text"
                 placeholder="Search posts..."
                 value={input}
                 onChange={handleInputChange}
+                className={styles.searchInput}
             />
-            <button type="submit">Search</button>
+            <button type="submit" className="btn-sm btn">Search</button>
         </form>
     );
 };

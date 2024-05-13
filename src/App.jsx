@@ -38,6 +38,7 @@ const App = () => {
         <Route path="dashboard/feed" element={<FeedPage />} />
         <Route path="dashboard/liked" element={<LikedPage />} />
         <Route path="dashboard/post" element={<PostPage />} />
+        <Route path="edit/:postId" element={<PostPage />} />
         <Route path="*" element={<Navigate replace to="/dashboard" />} />
       </Route>
     ) : (

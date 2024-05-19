@@ -1,0 +1,123 @@
+:root {
+    --commentbox-bkg: #e2e3e5;
+    --commentbox-inputbox-bkg: #f0f0f0;    
+    --commentbox-border: #ccc;
+    --form-buttons-bg-hover-color: #fffc3b;
+}
+
+.accordion-header {
+    width: auto;
+    background-color: var(--commentbox-bkg);    
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.commentBox {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.commentForm, .editCommentForm {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.commentForm textarea, .editCommentForm textarea {
+    resize: none;
+    padding: 6px;
+    margin-bottom: 5px;
+    border-radius: 12px;
+    border: 1px solid var(--commentbox-border);
+}
+
+button, .btn {
+    align-self: flex-end;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    margin: 0 5px;
+    min-width: 80px;
+    color: #000 !important;
+}
+
+button, .btn:hover {
+    background-color: var(--form-buttons-bg-hover-color);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    margin: 0 5px;
+    min-width: 80px;
+}
+
+.commentList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--commentbox-inputbox-bkg);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.commentHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.commentHeader img {
+    max-width: 40px;
+    max-height: 40px;
+    border-radius: 50%;
+}
+
+.commentHeader span {
+    font-weight: bold;
+}
+
+.commentBody {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.commentActions {
+    display: flex;
+    gap: 8px;
+}
+
+.commentActions a {
+    color: var(--color-strong);
+    cursor: pointer;
+}
+
+.commentActions a:hover {
+    color: var(--pumpkin);
+}
+
+.comment p, .modal {
+    margin: 0;
+    color: black;
+}
+
+.comment small {
+    color: #888;
+    align-self: flex-end;
+}
+
+.warning:hover {
+    background-color: var(--warning-button-hover);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    margin: 0 5px;
+    min-width: 80px; 
+}

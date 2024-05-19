@@ -1,54 +1,38 @@
 :root {
-    --color-eminence: #582974;
-    --color-ultra-violet: #585596;
-    --color-white: #FFFFFF;
-    --color-citrine: #fffc3b;
-    --color-pumpkin: #FF6900;
-    --color-strong: #3a3a3a;
-    
+    --color-pumpkin: #F9B233;
+    --color-strong: #F9B233;
 }
 
 .PostCard {
+    width: 100%; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-out;
     position: relative;
     overflow: hidden;
     border-radius: 16px;
-    margin-bottom: 10px;
-    cursor: pointer;        
+    margin-bottom: 20px; 
+    cursor: pointer; 
 }
 
 .PostCard img {
     width: 100%;
-    transition: transform 0.3s ease-out;
-    
+    max-height: 300px; 
+    object-fit: cover; 
 }
-
-.PostCard img:hover,
-.PostCard img:focus {
-    transform: scale(1.1);
-}
-
-
 
 .PostCard .btn {    
     padding: 0.25rem 0.5rem;
     font-size: 0.8rem; 
     margin: 0 5px; 
     min-width: 80px;
+    color: black!important;       
 }
-
-.PostCard .function-buttons button:last-child {
-    margin-right: 0; 
-}
-
 
 .profile {
     display: flex;
     align-items: center;
-    padding: 8px 12px;
-    border-bottom-left-radius: 16px;
-    border-bottom-right-radius: 16px;
+    padding: 8px 12px;    
+    border-bottom: 1px solid #ddd;
 }
 
 .profile img {
@@ -58,21 +42,53 @@
     margin-right: 8px;
 }
 
-.profile-info span {
+.profile span {
+    margin-right: 10px;
     font-weight: bold;
     color: var(--color-pumpkin);
+}
+
+.profile .date {
+    margin-left: auto;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.postDetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.postDetails span {
+    font-size: 0.9rem;
+    color: #777;
 }
 
 .likes {
     display: flex; 
     float: right;
-
 }
 
 strong {
     color: var(--color-strong);
 }
-.btn {
-    max-height: fit-content;
-}
 
+@media (max-width: 768px) {
+    .PostCard {
+        margin-bottom: 20px;
+    }
+    .PostCard img {
+        height: auto;
+    }
+    .profile img {
+        width: 30px; 
+        height: 30px;
+    }
+    .PostCard .btn {
+        padding: 0.25rem 0.4rem; 
+        font-size: 0.7rem; 
+    }
+}

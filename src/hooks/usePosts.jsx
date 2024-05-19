@@ -24,6 +24,16 @@ const usePosts = () => {
     fetchPosts();
   }, []);
 
+  const onSearch = async (query) => {
+    try {
+      const response = await axiosInstance.get(`/api/posts/?q=${query}`);
+      setData({ pages: [response.data.results] });
+    } catch (error) {
+      console.error('Search error:', error);
+      setError(error);
+    }
+  };
+
   const editPost = useMutation(
     async ({ postId, updatedData }) => {
       const response = await axiosInstance.put(`/api/posts/${postId}/`, updatedData);
@@ -58,10 +68,16 @@ const usePosts = () => {
     error,
     editPost,
     deletePost,
-    publishPost
+    publishPost,
+    onSearch
   };
 };
 
 export default usePosts;
+
+
+
+
+
 
 

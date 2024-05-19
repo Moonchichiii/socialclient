@@ -3,23 +3,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    flex-grow: 1;
     width: 100%;
     max-width: 500px;
-    max-height: fit-content;
     margin: 0 auto;
     overflow: hidden;
 }
 
 .CardFeed {
     width: 100%;
-    display: grid;
-    grid-template-columns: minmax(250px, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
     justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .LoadingSpinner {
@@ -28,12 +24,12 @@
 
 @media (max-width: 1024px) {
     .CardFeed {
-        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
 }
 
 @media (max-width: 768px) {
     .CardFeed {
-        grid-template-columns: 1fr;
+        gap: 5px;
     }
 }

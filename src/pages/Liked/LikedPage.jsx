@@ -1,11 +1,51 @@
+import React, { useEffect, useState } from "react";
+import axiosInstance from "../../api/axiosDefaults";
+import PostCard from "../../components/PostCard";
+import styles from "../../styles/LikedPostsPage.module.css";
 
-const LikedPage = () => {
-    
-    return (
-        <div>
-                <h1>Liked Page!</h1>
-        </div>
+const LikedPostsPage = () => {
+  const [likedPosts, setLikedPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchLikedPosts = async () => {
+      try {
+        const response = await axiosInstance.get("/api/posts/liked-posts/");
+        console.log("Liked Posts:", response.data);
+        setLikedPosts(response.data);
+      } catch (error) {
+        console.error("Failed to fetch liked posts", error.response || error);
+      }
+    };
+
+    fetchLikedPosts();
+  }, []);
+
+  const handleLikeChange = (postId, newLikesCount) => {
+    setLikedPosts((prevLikedPosts) =>
+      prevLikedPosts.map((post) =>
+        post.id === postId ? { ...post, likes_count: newLikesCount } : post
+      )
     );
+  };
+
+  return (
+    <div className={styles.LikedPostsPage}>
+      <h1>Liked Posts</h1>
+      <section className={styles.postsSection}>
+        {likedPosts.length ? (
+          likedPosts.map((post) => (
+            <PostCard
+              post={post}
+              key={post.id}
+              onLikeChange={handleLikeChange}
+            />
+          ))
+        ) : (
+          <p>No posts liked yet!</p>
+        )}
+      </section>
+    </div>
+  );
 };
 
-export default LikedPage;
+export default LikedPostsPage;

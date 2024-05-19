@@ -1,4 +1,4 @@
-# Social Food Posting
+# Social Food Posting - Frontend
 
 ## Table of Contents
 
@@ -14,72 +14,59 @@
 
 ## Project Goals
 
--   Share culinary secrets and photos of your work and interact with likeminded people! 
-
+The goal of the Social Food Posting platform is to allow users to share their culinary creations, interact with other food enthusiasts, and organize dinner events. Users can create posts, follow other users, like and comment on posts, and join dinner clubs to plan events.
 
 ## User Stories
-As a user i want 
 
+- As a user, I want to register an account and log in to access the platform's features.
+- As a user, I want to post photos of my dishes and share them with the community.
+- As a user, I want to like and comment on posts from other users.
+- As a user, I want to follow other users to see their posts.
+- As a user, I want to organize and join dinner events with other users.
+- As a user, I want to update my profile information.
 
 ## Design
 
 ### Color Palette
 
+- https://coolors.co
 
+![Coolors](<readmecontent/images/Screenshot 2024-04-19 144803.png>)
 
 ### Mockups
 
-**Desktop Landing Page**
+- Balsamiq
 
-
-
-**Mobile Landing Page**
-
-
-
-**Dashboard Screens**
-
-#### **Layout Component Setup**
-
-
-
-#### **Example Route Configuration**
-
+![Mockup](<readmecontent/images/Screenshot 2024-04-19 144513.png>)
 
 ## Technologies
 
--   **Vite**: For optimized frontend tooling.
--   **React**: For building dynamic user interfaces.
+- **Vite**: For optimized frontend tooling.
+- **React**: For building dynamic user interfaces.
 
 ## Dependencies
 
--   axios
--   bootstrap
--   react-loader-spinner
--   react-icons
--   react-query
--   react-router-dom
+- `axios`
+- `bootstrap`
+- `react`
+- `react-dom`
+- `react-loader-spinner`
+- `react-icons`
+- `react-query`
+- `react-router-dom`
 
 ## Setup and Installation
 
-
-
 ## Testing
 
-
-
 ## Deployment
-
-
 
 ## Credits
 
 Special thanks to:
 
--   [Focus CSS card from CodePen](https://codepen.io/utilitybend/pen/bGvjLba)
--   The Moments Walkthrough Project for guidance and inspiration
-
-
+- [Focus CSS card from CodePen](https://codepen.io/utilitybend/pen/bGvjLba)
+- The Moments Walkthrough Project for guidance and inspiration
 
 # React + Vite
 

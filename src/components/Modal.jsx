@@ -4,13 +4,13 @@ import styles from '../styles/Modal.module.css';
 
 function PostModal({ post, show, onHide }) {
   return (
-    <Modal show={show} onHide={onHide} size="md">
+    <Modal show={show} onHide={onHide} size="md" centered>
       <Modal.Header>
-        <Modal.Title>{post.title}</Modal.Title>
+        <Modal.Title className={styles.modalTitle}>{post.title}</Modal.Title>
       </Modal.Header>
 
-      <Modal.Body>
-        <img src={post.image} alt="Recipe" className="img-fluid" />
+      <Modal.Body className={styles.modalBody}>
+        <img src={post.image} alt="Recipe" className={`${styles.imgFluid} mb-3`} />
         <p><strong>Description:</strong> {post.description}</p>
         <ListGroup variant="flush">
           <ListGroup.Item>
@@ -25,14 +25,14 @@ function PostModal({ post, show, onHide }) {
         </ListGroup>
       </Modal.Body>
 
-      <Modal.Footer>
-        <div style={{ flex: '1 1 auto', display: 'flex', alignItems: 'center' }}>
+      <Modal.Footer className={styles.modalFooter}>
+        <div className={styles.profile}>
           <img
             src={post.profile_image}
             alt={`${post.display_name}'s profile`}
-            style={{ width: '40px', height: '40px', borderRadius: '50%', marginRight: '10px' }}
+            className={styles.profileImage}
           />
-          <span>{post.display_name}</span>
+          <span className={styles.profileName}>{post.display_name}</span>
         </div>
         <Button variant="secondary" onClick={onHide}>
           Close
@@ -43,4 +43,5 @@ function PostModal({ post, show, onHide }) {
 }
 
 export default PostModal;
+
 

@@ -1,0 +1,55 @@
+:root {
+  --background-color-body: #582974;
+  --text-color-primary: #FFFFFF;
+  --button-border-color: #fffc3b;
+  --form-buttons-bg-hover-color: #fffc3b;
+  --form-button-text-hover-color: #8a8a8a;
+}
+
+.section-wrapper {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.section {
+flex-direction: row;
+background-color: var(--background-color-body);
+padding: 10px;
+border: 1px solid #ddd;
+color: black;
+height: auto;
+}
+
+.profileItem {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px;
+border-bottom: 1px solid #ddd;
+background-color: var(--background-color-body);
+color: black;
+}
+
+.profileInfo {
+display: flex;
+align-items: center;
+}
+
+.profileInfo h3 {
+margin-left: 10px;
+color: black;
+}
+
+.profileInfo p {
+margin-left: 10px;
+color: black;
+}
+
+.profileButtons {
+display: flex;
+}
+
+.followButton {
+margin-right: 10px;
+}

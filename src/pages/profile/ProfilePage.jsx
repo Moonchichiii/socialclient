@@ -97,7 +97,7 @@ const ProfilePage = () => {
                             onChange={handleImageChange}
                         />
                         {imagePreview && (
-                            <Image src={imagePreview} alt="Profile" style={{ width: 100, height: 100, borderRadius: "50%" }} />
+                            <Image className='mt-2' src={imagePreview} alt="Profile" style={{ width: 100, height: 100, borderRadius: "50%" }} />
                         )}
                     </Form.Group>
                     <Button type="submit" className="mt-3 btn btn-primary">

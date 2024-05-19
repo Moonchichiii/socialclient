@@ -10,6 +10,7 @@ import {
   faPlus,
   faUser,
   faSignOutAlt,
+  faStar
 } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../hooks/useAuth";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
@@ -90,6 +91,9 @@ function Navigation() {
         <NavLink to="/dashboard/liked" onClick={closeOffCanvas}>
           Liked <FontAwesomeIcon icon={faHeart} />
         </NavLink>
+        <NavLink to="/dashboard/popular" onClick={closeOffCanvas}>
+        Popular Profiles <FontAwesomeIcon icon={faStar} />
+      </NavLink>
         <NavLink to="/dashboard/post" onClick={closeOffCanvas}>
           Post <FontAwesomeIcon icon={faPlus} />
         </NavLink>

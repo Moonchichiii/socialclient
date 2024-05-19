@@ -17,10 +17,13 @@ const SearchBar = ({ onSearch }) => {
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault();        
-        onSearch(input);
-    };
+        event.preventDefault();
+        if(typeof onSearch === 'function') {
+          onSearch(input);
+        }        
+      };
 
+      
     return (
         <form onSubmit={handleSubmit} className={styles.searchForm}>
             <input

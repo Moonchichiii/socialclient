@@ -3,18 +3,20 @@
   --box-background-color: #534E90;
   --text-color-white: #FFFFFF;
   --text-color-dark: #8a8a8a;
-
-
+  --text-color-darker: #3a3a3a;
+  --pumpkin: #F9B233;
+  --warning-button-hover: #c00909;
   --text-color-primary: var(--text-color-white);
   --text-color-secondary: var(--text-color-dark);
-
   --form-buttons-bg-hover-color: #fffc3b;
-  --form-button-text-color: #c6c42a;
-  --form-button-text-hover-color: #3a3a3a;
-  --button-border-color: #fffc3b;
-
-
-
+  --form-button-text-color: #fffc3b;
+  --form-button-text-hover-color: #8a8a8a;
+  --button-border-color: #fffc3b;  
+  /* Features */  
+  --card-background-color: #ffffffd6; 
+  --commentbox-bkg: #e2e3e5;
+  --commentbox-inputbox-bkg: #f0f0f0;    
+  --commentbox-border: #ccc;
   /* Typography */
   --font-headings: 'Montserrat', sans-serif;
   --font-text: 'Barlow Condensed', sans-serif;
@@ -42,9 +44,7 @@ html {
 .container,
 .auth-con {
   margin-top: 10rem;
-
 }
-
 
 main {
   flex-grow: 1;
@@ -54,8 +54,6 @@ main {
   width: 100%;  
   max-width: 1200px;  
 }
-
-
 
 .button-primary,
 .btn,
@@ -98,12 +96,11 @@ p {
   color: var(--text-color-primary);
 }
 
-
-
-
 @media only screen and (orientation: landscape) and (max-width: 700px) {
   .container,
   .auth-con {
     margin-top: 5rem; 
   }
 }
+
+

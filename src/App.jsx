@@ -18,6 +18,7 @@ const ProfilePage = React.lazy(() => import("./pages/profile/ProfilePage"));
 const FeedPage = React.lazy(() => import("./pages/feed/FeedPage"));
 const LikedPage = React.lazy(() => import("./pages/Liked/LikedPage"));
 const PostPage = React.lazy(() => import("./pages/post/PostPage"));
+const Popular = React.lazy(() => import("./pages/profile/PopularProfilesPage"));
 
 const App = () => {
   const { currentUser, isLoading } = useCurrentUser();
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="dashboard/profile" element={<ProfilePage />} />
         <Route path="dashboard/feed" element={<FeedPage />} />
         <Route path="dashboard/liked" element={<LikedPage />} />
+        <Route path="dashboard/popular" element={<Popular />} />
         <Route path="dashboard/post" element={<PostPage />} />
         <Route path="edit/:postId" element={<PostPage />} />
         <Route path="*" element={<Navigate replace to="/dashboard" />} />

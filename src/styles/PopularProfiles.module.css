@@ -6,9 +6,8 @@
   --form-button-text-hover-color: #8a8a8a;
 }
 
-.section-wrapper {
+.sectionWrapper {
 display: flex;
-flex-direction: column;
 gap: 20px;
 }
 

@@ -21,7 +21,7 @@ const LoginForm = () => {
     <div className="container auth-con">
       <div className="row justify-content-center">
         <div className={`col-md-6 ${styles['form-container']}`}>
-        <h1 className={`text-center mb-4 ${styles['form-title']}`}>Social Food Posting</h1>
+          <h1 className={`text-center mb-4 ${styles['form-title']}`}>Social Food Posting</h1>
           <h2 className={`text-center mb-4 ${styles['form-title']}`}>Sign in</h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="Username" className={styles['form-group']}>
@@ -35,7 +35,6 @@ const LoginForm = () => {
                 onChange={handleChange}
                 className={styles['form-control']}
               />
-              
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword" className={styles['form-group']}>
@@ -51,21 +50,20 @@ const LoginForm = () => {
               />
             </Form.Group>
             <div className="d-flex justify-content-center">
-            {error && <Alert variant="warning" className={styles['error-alert']}>{error}</Alert>}
-
-            <Button type="submit" disabled={isLoading} className={`mt-3 ${styles['form-button']} btn btn-primary`}>
-              {isLoading ? (
-                <>
-                  <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
-                  Loading...
-                </>
-              ) : "Sign In"}
-            </Button>
+              {error && <Alert variant="warning" className={styles['error-alert']}>{error}</Alert>}
+              <Button type="submit" disabled={isLoading} className={`mt-3 ${styles['form-button']} btn btn-primary`}>
+                {isLoading ? (
+                  <>
+                    <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+                    Loading...
+                  </>
+                ) : "Sign In"}
+              </Button>
             </div>
             <div className="d-flex justify-content-center">
-            <div className={`mt-3 ${styles['auth-switch']}`}>
-              Don't have an account? <Link to="/register">Sign up</Link>
-            </div>
+              <div className={`mt-3 ${styles['auth-switch']}`}>
+                Don't have an account? <Link to="/register">Sign up</Link>
+              </div>
             </div>
           </Form>
         </div>

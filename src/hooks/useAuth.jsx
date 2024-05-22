@@ -32,7 +32,8 @@ export function useAuth() {
   const login = async (username, password) => {
     setIsLoading(true);
     try {
-      const response = await axiosInstance.post("/api/login/", { username, password });
+      console.log("Logging in...");
+      await axiosInstance.post("/api/login/", { username, password });
       await verifyAndFetchUser();
       navigate('/dashboard');
     } catch (err) {
@@ -56,6 +57,7 @@ export function useAuth() {
   const register = async (formData) => {
     setIsLoading(true);
     try {
+      console.log("Registering...");
       await axiosInstance.post("/api/register/", formData);
       await verifyAndFetchUser();
       navigate('/dashboard');
@@ -73,11 +75,14 @@ export function useAuth() {
 
   const logout = async () => {
     try {
-      await axiosInstance.post("/api/logout/");
+      console.log("Logging out...");
+      await axiosInstance.post("/api/logout/");  
+      document.cookie = "jwt_access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "jwt_refresh_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       setCurrentUser(null);
       navigate("/");
     } catch (error) {
-      console.error("Logout failed:", error);
+      console.error("Logout failed:", error);  
     }
   };
 

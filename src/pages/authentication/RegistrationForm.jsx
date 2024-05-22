@@ -25,7 +25,7 @@ const RegistrationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password1 !== formData.password2) {
-      setLocalError({ ...localError, password2: "Opps! Passwords do not match!" });
+      setLocalError({ ...localError, password2: "Oops! Passwords do not match!" });
       return;
     }
 
@@ -39,13 +39,10 @@ const RegistrationForm = () => {
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-md-6">
-        <h1 className={`text-center mb-4 ${styles['form-title']}`}>Social Food Posting</h1>
-        <h2 className={`text-center mb-4 ${styles['form-title']}`}>Sign up</h2>        
+          <h1 className={`text-center mb-4 ${styles['form-title']}`}>Social Food Posting</h1>
+          <h2 className={`text-center mb-4 ${styles['form-title']}`}>Sign up</h2>        
           <Form onSubmit={handleSubmit}>
-            <Form.Group
-              controlId="registrationUsername"
-              className={styles["form-group"]}
-            >
+            <Form.Group controlId="registrationUsername" className={styles["form-group"]}>
               <Form.Label className={styles["form-label"]}>Username</Form.Label>
               <Form.Control
                 type="text"
@@ -68,10 +65,7 @@ const RegistrationForm = () => {
               )}
             </Form.Group>
 
-            <Form.Group
-              controlId="registrationEmail"
-              className={styles["form-group"]}
-            >
+            <Form.Group controlId="registrationEmail" className={styles["form-group"]}>
               <Form.Label className={styles["form-label"]}>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -84,10 +78,7 @@ const RegistrationForm = () => {
               />
             </Form.Group>
 
-            <Form.Group
-              controlId="registrationPassword"
-              className={styles["form-group"]}
-            >
+            <Form.Group controlId="registrationPassword" className={styles["form-group"]}>
               <Form.Label className={styles["form-label"]}>Password</Form.Label>
               <Form.Control
                 type="password"
@@ -100,13 +91,8 @@ const RegistrationForm = () => {
               />
             </Form.Group>
 
-            <Form.Group
-              controlId="registrationConfirmPassword"
-              className={styles["form-group"]}
-            >
-              <Form.Label className={styles["form-label"]}>
-                Confirm Password
-              </Form.Label>
+            <Form.Group controlId="registrationConfirmPassword" className={styles["form-group"]}>
+              <Form.Label className={styles["form-label"]}>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Confirm password"
@@ -123,23 +109,20 @@ const RegistrationForm = () => {
               )}
             </Form.Group>
             <div className="d-flex justify-content-center">
-            {error && <Alert variant="warning" className={styles['error-alert']}>{error}</Alert>}
-
-            <Button type="submit" disabled={isLoading} className={`mt-3 ${styles['form-button']} btn btn-primary`}>
-              {isLoading ? (
-                <>
-                  <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
-                  Loading...
-                </>
-              ) : "Create Account"}
-            </Button>
+              {error && <Alert variant="warning" className={styles['error-alert']}>{error}</Alert>}
+              <Button type="submit" disabled={isLoading} className={`mt-3 ${styles['form-button']} btn btn-primary`}>
+                {isLoading ? (
+                  <>
+                    <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+                    Loading...
+                  </>
+                ) : "Create Account"}
+              </Button>
             </div>
-
             <div className="d-flex justify-content-center">
-            <div className={`mt-3 ${styles["auth-switch"]}`}>
-              Already have an account? <Link to="/login">Sign In</Link>
-            </div>
-            
+              <div className={`mt-3 ${styles["auth-switch"]}`}>
+                Already have an account? <Link to="/login">Sign In</Link>
+              </div>
             </div>
           </Form>
         </div>

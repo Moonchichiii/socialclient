@@ -6,49 +6,102 @@
 2.  [Design](#design)
 3.  [Technologies](#technologies)
 4.  [Dependencies](#dependencies)
-5.  [Setup and Installation](#setup-and-installation)
-6.  [Testing](#Testing)
-7.  [Deployment](#deployment)
-8.  [Credits](#credits)
+5.  [Reusable Components](#reuseable-components)
+6.  [Setup and Installation](#setup-and-installation)
+7.  [Testing](#Testing)
+8.  [Deployment](#deployment)
+9.  [Credits](#credits)
 
 ## Project Overview
 
-The goal of the Social Food Posting platform is to allow users to share their culinary creations, interact with other food enthusiasts, and organize dinner events. Users can create posts, follow other users, like and comment on posts, and join dinner clubs to plan events.
+## Objective
+The aim of the **Social Food Posting platform** is to provide a space where users can:
+- Share their culinary creations.
+- Connect with other food lovers.
+- Organize or join dinner clubs with like-minded individuals.
+
+## Features
+### User Interaction
+- **Create Posts:** Users can create posts showcasing their culinary skills.
+- **Follow Users:** Follow others who share similar gastronomic interests.
+- **Likes and Comments:** Interact with the community by liking and commenting on each other's content.
+
+### Dinner Clubs
+- **Join Existing Clubs:** Participate in dinner clubs that suit your taste.
+- **Start Your Own Club:** Invite other users to join you at home for shared dining experiences, creating a personalized dinner club.
+
 
 ## Design
 
+## Mockups
+
+**Created with Balsamiq**
+<br>
+ ![Landingpage](readmecontent/images/landingpagefullscreen.png)  ![signup](readmecontent/images/signup_full_screen.png) 
+ <br>
+ ![dashboard](readmecontent/images/Dashboard_dinnerClub.png)  ![feedpage](readmecontent/images/feedpagefullscreen.png)
+ <br>
+ ![liked](readmecontent/images/likedfullscreen.png) ![profiles&followers](readmecontent/images/popularAndFollowersfullscreen.png)
+ <br>
+ ![create post](readmecontent/images/createpostfullscreen.png) ![alt text](readmecontent/images/profileupdatefullscreen.png)
+ 
+
+## Mobile View
+![Landing](readmecontent/images/landingpagemobile.png) ![landing2](readmecontent/images/landingpage2mobile.png)
+
+![dashboard-mobile](readmecontent/images/dashboardmobile.png) ![feedpagemobile](readmecontent/images/feedpagemobile.png)
+
+![naivgation](readmecontent/images/navigationmobile.png)
+
+
+
 ### Color Palette
 
+
    [Coolors Color Palette](https://coolors.co/)
-   - ![Coolors](<readmecontent/images/Screenshot 2024-04-20 103846.png>)
+   <br>
+   ![Coolors](<readmecontent/images/Screenshot 2024-04-20 103846.png>)
 
 
-### Mockups
 
--   Created with Balsamiq
-- ![Mockup](<readmecontent/images/Screenshot 2024-04-19 144513.png>)
+- ***Fonts Used***: 'Montserrat' for headings and 'Barlow Condensed' for text.
 
 ## Technologies
 
--   **Vite**: For optimized frontend tooling.
--   **React**: For building dynamic user interfaces.
+- Vite + React 
+
 
 ## Dependencies
 
--   `axios`
--   `bootstrap`
--   `react`
--   `react-dom`
--   `react-loader-spinner`
--   `react-icons`
--   `react-query`
--   `react-router-dom`
+-   `axios`- Axios is a promise-based HTTP client compatible with node.jsand across browsers.
+-   `bootstrap`- For responsive design and pre-styled components.
+-   `react-loader-spinner` - provides simple React.js spinner component which can be implemented 
+                             for async wait operation before data load to the view
+-   `react-query` - Is a hook library for handling asynchronous and 
+                    remote data in React applications. 
+                    It provides features such as caching, syncing, querying, mutations.
+- `lodash`  - For utility functions, debounce in search functionality.
+- `js-cookie` - For managing cookies,for authentication.
+- `@fortawesome/free-solid-svg-icons`- To use the iconic font, CSS, and SVG framework in your project.
+- `Express` Express is a fast, unopinionated, minimalist web framework for Node.js1. 
+It is used for developing servers and provides small, robust tooling for HTTP servers
+- `compression` - https://www.npmjs.com/package/compression
 
+##  Reusabl components 
+
+ - Searchbar
+ - Modal
+ - PostCard
+ 
+ 
+ 
 ## Setup and Installation
 
-1.  **Clone the Repository**
+1.  **Clone the Repository**    
     
-    
+    ![alt text](readmecontent/images/clone-2.png)
+    ![alt text](readmecontent/images/clone-3.png)
+
 2.  **Install Dependencies**
     `npm install` 
     
@@ -99,15 +152,12 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 ## Testing 
 
-For detailed testing instructions, please refer to the Manual Testing.
-
     
 
 ## Credits
 
 Special thanks to:
 
--   [Focus CSS card from CodePen](https://codepen.io/utilitybend/pen/bGvjLba)
 -   The Moments Walkthrough Project for guidance and inspiration
 
 # React + Vite

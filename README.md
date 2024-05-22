@@ -81,7 +81,6 @@ The aim of the **Social Food Posting platform** is to provide a space where user
                     remote data in React applications. 
                     It provides features such as caching, syncing, querying, mutations.
 - `lodash`  - For utility functions, debounce in search functionality.
-- `js-cookie` - For managing cookies,for authentication.
 - `@fortawesome/free-solid-svg-icons`- To use the iconic font, CSS, and SVG framework in your project.
 - `Express` Express is a fast, unopinionated, minimalist web framework for Node.js1. 
 It is used for developing servers and provides small, robust tooling for HTTP servers

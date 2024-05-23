@@ -2,6 +2,12 @@ import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from '../api/axiosDefaults';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import Cookies from "js-cookie";
+
+const cookieOptions = {
+  accessTokenOpts: { expires: 1 / 24, path: "/" },
+  refreshTokenOpts: { expires: 7, path: "/" },
+};
 
 export function useAuth() {
   const { setCurrentUser, verifyAndFetchUser } = useContext(CurrentUserContext);
@@ -11,29 +17,34 @@ export function useAuth() {
 
   useEffect(() => {
     const requestInterceptor = axiosInstance.interceptors.request.use(
-      async config => {
-        try {
-          const response = await axiosInstance.post("/api/token/refresh/");
-          const { access } = response.data;
-          config.headers.Authorization = `Bearer ${access}`;
-        } catch (error) {
-          console.error('Token refresh failed:', error);
+      config => {
+        const token = Cookies.get('jwt_access_token');
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
       },
-      error => Promise.reject(error)
+      error => {
+        return Promise.reject(error);
+      }
     );
 
-    return () => {
+    return () => {      
       axiosInstance.interceptors.request.eject(requestInterceptor);
     };
   }, []);
 
+  const setCookies = (accessToken, refreshToken) => {    
+    Cookies.set("jwt_access_token", accessToken, { path: '/', expires: 1 / 24 });
+    Cookies.set("jwt_refresh_token", refreshToken, { path: '/', expires: 7 });
+};
+
   const login = async (username, password) => {
     setIsLoading(true);
     try {
-      console.log("Logging in...");
-      await axiosInstance.post("/api/login/", { username, password });
+      const response = await axiosInstance.post("/api/token/", { username, password });
+      const { access, refresh } = response.data;
+      setCookies(access, refresh);
       await verifyAndFetchUser();
       navigate('/dashboard');
     } catch (err) {
@@ -53,16 +64,17 @@ export function useAuth() {
       setIsLoading(false);
     }
   };
-
   const register = async (formData) => {
     setIsLoading(true);
     try {
-      console.log("Registering...");
-      await axiosInstance.post("/api/register/", formData);
+      const response = await axiosInstance.post("/api/register/", formData);
+      const { access_token, refresh_token } = response.data;
+      setCookies(access_token, refresh_token);
       await verifyAndFetchUser();
       navigate('/dashboard');
     } catch (err) {
       if (err.response && err.response.data) {
+
         setError(err.response.data);
       } else {
         setError({ general: "Registration failed. Please try again later." });
@@ -73,18 +85,17 @@ export function useAuth() {
     }
   };
 
-  const logout = async () => {
-    try {
-      console.log("Logging out...");
-      await axiosInstance.post("/api/logout/");  
-      document.cookie = "jwt_access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = "jwt_refresh_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+const logout = async () => {
+  try {
+      const formData = { refresh: Cookies.get("jwt_refresh_token") };
+      await axiosInstance.post("/api/logout/", formData);  
+      Cookies.remove("jwt_access_token", { path: "/" });
+      Cookies.remove("jwt_refresh_token", { path: "/" });  
       setCurrentUser(null);
       navigate("/");
-    } catch (error) {
+  } catch (error) {
       console.error("Logout failed:", error);  
-    }
-  };
-
+  }
+};
   return { login, register, logout, isLoading, error };
 }

@@ -76,86 +76,84 @@ const PostPage = () => {
     };
 
     return (
-    <div className={styles.postPage}>
-      <h1>{postId ? 'Edit Post' : 'Create a New Post'}</h1>
-      {error && <Alert variant="danger">{error}</Alert>}
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="postTitle">
-          <Form.Label>Title</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Title"
-            name="title"
-            value={postData.title}
-            onChange={handleChange}
-          />
-        </Form.Group>
+        <div className={styles.postPage}>
+            <h1>{postId ? 'Edit Post' : 'Create a New Post'}</h1>
+            {error && <Alert variant="danger">{error}</Alert>}
+            <Form onSubmit={handleSubmit}>
 
-        <Form.Group controlId="postIngredients">
-          <Form.Label className='mt-2'>Ingredients</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={3}
-            placeholder="Ingredients"
-            name="ingredients"
-            value={postData.ingredients}
-            onChange={handleChange}
-          />
-        </Form.Group>
+                <Form.Group controlId="postTitle">
+                  <Form.Label>Title</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Title"
+                    name="title"
+                    value={postData.title}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-        <Form.Group controlId="postRecipe">
-          <Form.Label className='mt-2'>Recipe</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={3}
-            placeholder="How to make the dish"
-            name="recipe"
-            value={postData.recipe}
-            onChange={handleChange}
-          />
-        </Form.Group>
+                <Form.Group controlId="postIngredients">
+                  <Form.Label className='mt-2'>Ingredients</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="Ingredients"
+                    name="ingredients"
+                    value={postData.ingredients}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-        <Form.Group controlId="postDescription">
-          <Form.Label className='mt-2'>Description</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={2}
-            placeholder="Description"
-            name="description"
-            value={postData.description}
-            onChange={handleChange}
-          />
-        </Form.Group>
+                <Form.Group controlId="postRecipe">
+                  <Form.Label className='mt-2'>Recipe</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="How to make the dish"
+                    name="recipe"
+                    value={postData.recipe}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-        <Form.Group controlId="postCookingTime">
-          <Form.Label className='mt-2'>Cooking Time (minutes)</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder="Cooking time"
-            name="cookingTime"
-            value={postData.cookingTime}
-            onChange={handleChange}
-          />
-        </Form.Group>
+                <Form.Group controlId="postDescription">
+                  <Form.Label className='mt-2'>Description</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={2}
+                    placeholder="Description"
+                    name="description"
+                    value={postData.description}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-        <Form.Group controlId="postImage">
-          <Form.Label className='mt-2'>Image</Form.Label>
-          <Form.Control
-            type="file"
-            name="image"
-            onChange={handleImageChange}
-          />
-          {postData.imageUrl && (
-            <Image src={postData.imageUrl} alt="Post" style={{ width: '100%', marginTop: '10px' }} />
-          )}
-        </Form.Group>
+                <Form.Group controlId="postCookingTime">
+                  <Form.Label className='mt-2'>Cooking Time (minutes)</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder="Cooking time"
+                    name="cookingTime"
+                    value={postData.cookingTime}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-        <Button className='mt-2' variant="primary" type="submit" disabled={isLoading}>
-          {isLoading ? 'Submitting.....' : (postId ? 'Update' : 'Post')}
-        </Button>
-      </Form>
-    </div>
-  );
+                <Form.Group controlId="postImage">
+                  <Form.Label className='mt-2'>Image</Form.Label>
+                  <Form.Control
+                    type="file"
+                    name="image"
+                    onChange={handleImageChange}
+                  />
+                </Form.Group>
+
+                <Button className='mt-2' variant="primary" type="submit" disabled={isLoading}>
+                    {isLoading ? 'Submitting.....' : (postId ? 'Update' : 'Post')}
+                </Button>
+            </Form>
+        </div>
+    );
 };
 
 export default PostPage;

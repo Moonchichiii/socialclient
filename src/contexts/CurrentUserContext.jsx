@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useCallback, useMemo } from 'react';
+import React, { createContext, useState, useContext, useCallback, useMemo, useEffect } from 'react';
 import axiosInstance from '../api/axiosDefaults';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -6,6 +6,9 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import Alert from 'react-bootstrap/Alert';
 
 export const CurrentUserContext = createContext();
+
+const INACTIVITY = 3 * 6  * 1000; 
+const INTERVAL = 5 * 60 * 1000; 
 
 export const CurrentUserProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
@@ -23,8 +26,8 @@ export const CurrentUserProvider = ({ children }) => {
             setLoading(false);
             navigate("/login");
             return;
-        }    
-        try {           
+        }
+        try {
             const config = {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
@@ -42,6 +45,44 @@ export const CurrentUserProvider = ({ children }) => {
             setLoading(false);
         }
     }, [navigate]);
+
+    useEffect(() => {
+        let inactivityTimer;
+        let heartbeatTimer;
+
+        const resetInactivityTimer = () => {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(logout, INACTIVITY);
+        };
+
+        const logout = () => {
+            Cookies.remove("jwt_access_token", { path: '/' });
+            Cookies.remove("jwt_refresh_token", { path: '/' });
+            setCurrentUser(null);
+            setMessage("Session ended due to inactivity. Please login again.");
+            navigate("/login");
+        };
+
+        const startHeartbeat = () => {
+            heartbeatTimer = setInterval(() => {
+                verifyAndFetchUser();
+            }, INTERVAL);
+        };
+
+        window.addEventListener('mousemove', resetInactivityTimer);
+        window.addEventListener('keypress', resetInactivityTimer);
+      
+        resetInactivityTimer();
+        startHeartbeat();
+
+        return () => {
+            clearTimeout(inactivityTimer);
+            clearInterval(heartbeatTimer);
+            window.removeEventListener('mousemove', resetInactivityTimer);
+            window.removeEventListener('keypress', resetInactivityTimer);
+            
+        };
+    }, [navigate, verifyAndFetchUser]);
 
     const value = useMemo(() => ({
         verifyAndFetchUser, 

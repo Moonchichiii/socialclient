@@ -2,7 +2,7 @@
   --background-color-body: #582974;
   --box-background-color: #534E90;
   --text-color-white: #FFFFFF;
-  --text-color-dark: #8a8a8a;
+  --text-color-dark: #f0f0f0;
   --text-color-darker: #3a3a3a;
   --pumpkin: #F9B233;
   --warning-button-hover: #c00909;
@@ -94,6 +94,20 @@ h6 {
 p {
   font-family: var(--text-color-secondary);
   color: var(--text-color-primary);
+}
+
+
+.loading-spinner {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2050;
 }
 
 @media only screen and (orientation: landscape) and (max-width: 700px) {

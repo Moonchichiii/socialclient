@@ -5,8 +5,8 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Cookies from "js-cookie";
 
 const cookieOptions = {
-  accessTokenOpts: { expires: 1 / 24, path: "/" },
-  refreshTokenOpts: { expires: 7, path: "/" },
+  accessTokenOpts: { expires: 1 / 24, path: '/', sameSite: 'None', secure: true },
+  refreshTokenOpts: { expires: 7, path: '/', sameSite: 'None', secure: true },
 };
 
 export function useAuth() {
@@ -29,22 +29,22 @@ export function useAuth() {
       }
     );
 
-    return () => {      
+    return () => {
       axiosInstance.interceptors.request.eject(requestInterceptor);
     };
   }, []);
 
-  const setCookies = (accessToken, refreshToken) => {    
-    Cookies.set("jwt_access_token", accessToken, { path: '/', expires: 1 / 24 });
-    Cookies.set("jwt_refresh_token", refreshToken, { path: '/', expires: 7 });
-};
+  const setCookies = (accessToken, refreshToken) => {
+    Cookies.set('jwt_access_token', accessToken, cookieOptions.accessTokenOpts);
+    Cookies.set('jwt_refresh_token', refreshToken, cookieOptions.refreshTokenOpts);
+  };
 
   const login = async (username, password) => {
     setIsLoading(true);
     try {
-      const response = await axiosInstance.post("/api/token/", { username, password });
-      const { access, refresh } = response.data;
-      setCookies(access, refresh);
+      const response = await axiosInstance.post('/api/login/', { username, password });
+      const { access_token, refresh_token } = response.data;
+      setCookies(access_token, refresh_token);
       await verifyAndFetchUser();
       navigate('/dashboard');
     } catch (err) {
@@ -67,7 +67,7 @@ export function useAuth() {
   const register = async (formData) => {
     setIsLoading(true);
     try {
-      const response = await axiosInstance.post("/api/register/", formData);
+      const response = await axiosInstance.post('/api/register/', formData);
       const { access_token, refresh_token } = response.data;
       setCookies(access_token, refresh_token);
       await verifyAndFetchUser();
@@ -85,17 +85,17 @@ export function useAuth() {
     }
   };
 
-const logout = async () => {
-  try {
+  const logout = async () => {
+    try {
       const formData = { refresh: Cookies.get("jwt_refresh_token") };
       await axiosInstance.post("/api/logout/", formData);  
       Cookies.remove("jwt_access_token", { path: "/" });
       Cookies.remove("jwt_refresh_token", { path: "/" });  
       setCurrentUser(null);
       navigate("/");
-  } catch (error) {
+    } catch (error) {
       console.error("Logout failed:", error);  
-  }
-};
+    }
+  };
   return { login, register, logout, isLoading, error };
 }

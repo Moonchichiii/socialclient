@@ -9,19 +9,17 @@ export const CurrentUserContext = createContext();
 
 export const CurrentUserProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true); // Using isLoading to maintain consistency
     const [message, setMessage] = useState("");
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const verifyAndFetchUser = useCallback(async () => {
-        setLoading(true);
+        setIsLoading(true);
         const accessToken = Cookies.get("jwt_access_token");
         if (!accessToken) {
-            setError("Access token not found.");
-            setMessage("Session ended. Please login again.");
-            setLoading(false);
-            navigate("/login");
+            setMessage("");
+            setIsLoading(false);
             return;
         }
         try {
@@ -33,6 +31,7 @@ export const CurrentUserProvider = ({ children }) => {
             await axiosInstance.post("/api/token/verify/", { token: accessToken }, config);
             const response = await axiosInstance.get("/api/current-user/", config);
             setCurrentUser(response.data);
+            setMessage("");  // Clear any existing message
         } catch (error) {
             console.error("Error verifying token or fetching user data:", error);
             setError(error.toString());
@@ -40,11 +39,10 @@ export const CurrentUserProvider = ({ children }) => {
             Cookies.remove("jwt_access_token", { path: '/' });
             Cookies.remove("jwt_refresh_token", { path: '/' });
             setCurrentUser(null);
-            navigate("/login");
         } finally {
-            setLoading(false);
+            setIsLoading(false);
         }
-    }, [navigate]);
+    }, []);
 
     useEffect(() => {
         verifyAndFetchUser();
@@ -54,18 +52,18 @@ export const CurrentUserProvider = ({ children }) => {
         verifyAndFetchUser, 
         currentUser,
         setCurrentUser,        
-        loading,
-        setLoading,
+        isLoading,
+        setIsLoading,
         message,
         setMessage,
         error,
         setError
-    }), [currentUser, loading, message, error]);
+    }), [currentUser, isLoading, message, error]);
 
     return (
         <CurrentUserContext.Provider value={value}>
             {message && <Alert variant="danger">{message}</Alert>}
-            {!loading ? children : <LoadingSpinner />}
+            {!isLoading ? children : <LoadingSpinner />}
         </CurrentUserContext.Provider>
     );
 };

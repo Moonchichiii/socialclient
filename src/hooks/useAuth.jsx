@@ -64,6 +64,7 @@ export function useAuth() {
       setIsLoading(false);
     }
   };
+
   const register = async (formData) => {
     setIsLoading(true);
     try {
@@ -74,7 +75,6 @@ export function useAuth() {
       navigate('/dashboard');
     } catch (err) {
       if (err.response && err.response.data) {
-
         setError(err.response.data);
       } else {
         setError({ general: "Registration failed. Please try again later." });
@@ -97,5 +97,6 @@ export function useAuth() {
       console.error("Logout failed:", error);  
     }
   };
+
   return { login, register, logout, isLoading, error };
 }

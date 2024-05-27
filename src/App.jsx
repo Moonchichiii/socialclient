@@ -5,7 +5,6 @@ import { useCurrentUser } from "./contexts/CurrentUserContext";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import LoadingSpinner from "./components/LoadingSpinner";
 
-
 // Lazy loaded components
 const LoginForm = React.lazy(() => import("./pages/authentication/LoginForm"));
 const RegistrationForm = React.lazy(() =>
@@ -21,37 +20,36 @@ const PostPage = React.lazy(() => import("./pages/post/PostPage"));
 const Popular = React.lazy(() => import("./pages/profile/PopularProfilesPage"));
 
 const App = () => {
-  const { currentUser, isLoading } = useCurrentUser();
+  const { currentUser, loading } = useCurrentUser();
 
-  if (isLoading) {
+  if (loading) {
     return <LoadingSpinner />;
   }
 
   return (
-    
     <Suspense fallback={<LoadingSpinner />}>
-  <Routes>
-    {currentUser ? (
-      <Route path="/" element={<Layout />}>
-        <Route index element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-        <Route path="dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-        <Route path="dashboard/profile" element={<ProfilePage />} />
-        <Route path="dashboard/feed" element={<FeedPage />} />
-        <Route path="dashboard/liked" element={<LikedPage />} />
-        <Route path="dashboard/popular" element={<Popular />} />
-        <Route path="dashboard/post" element={<PostPage />} />
-        <Route path="edit/:postId" element={<PostPage />} />
-        <Route path="*" element={<Navigate replace to="/dashboard" />} />
-      </Route>
-    ) : (
-      <> 
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/register" element={<RegistrationForm />} />
-        <Route path="*" element={<Navigate replace to="/login" />} />      
-      </>
-    )}
-  </Routes>
-</Suspense>
+      <Routes>
+        {currentUser ? (
+          <Route path="/" element={<Layout />}>
+            <Route index element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path="dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path="dashboard/profile" element={<ProfilePage />} />
+            <Route path="dashboard/feed" element={<FeedPage />} />
+            <Route path="dashboard/liked" element={<LikedPage />} />
+            <Route path="dashboard/popular" element={<Popular />} />
+            <Route path="dashboard/post" element={<PostPage />} />
+            <Route path="edit/:postId" element={<PostPage />} />
+            <Route path="*" element={<Navigate replace to="/dashboard" />} />
+          </Route>
+        ) : (
+          <> 
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/register" element={<RegistrationForm />} />
+            <Route path="*" element={<Navigate replace to="/login" />} />      
+          </>
+        )}
+      </Routes>
+    </Suspense>
   );
 };
 

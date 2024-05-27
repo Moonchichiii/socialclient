@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Alert, Image } from "react-bootstrap";
 import axiosInstance from '../../api/axiosDefaults';
-import styles from './ProfilePage.module.css';
+
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
+
+import styles from "../../styles/ProfilePage.module.css";
 
 const ProfilePage = () => {
     const { currentUser, isLoading, verifyAndFetchUser } = useCurrentUser();

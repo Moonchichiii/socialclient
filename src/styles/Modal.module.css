@@ -1,26 +1,23 @@
-:root {
-  --text-color-darker: #3a3a3a;
-}
-
 .modalBody {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-size: large;
 }
 
 .imgFluid {
   width: 100%;
-  height: 200px; 
+  height: 200px;
   object-fit: cover;
 }
 
 .modalTitle {
-  color: var(--text-color-darker); 
+  color: var(--text-color-darker);
 }
 
 .profileName {
-  color: var(--text-color-darker); 
+  color: var(--text-color-darker);
 }
 
 .modalFooter {
@@ -44,16 +41,11 @@
 
 @media (max-width: 768px) {
   .modalFooter {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .profileImage {
-      width: 30px;
-      height: 30px;
-  }
-
-  .modalFooter button {
-      width: 100%;
-      margin-top: 10px;
+    width: 30px;
+    height: 30px;
   }
 }

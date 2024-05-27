@@ -48,10 +48,10 @@ const PopularProfilesPage = () => {
                         alt="Profile"
                       />
                     )}
-                    <h3 className={styles.PopularHeading}>
+                    <h3 className={styles.popularHeading}>
                       {profile.display_name}
                     </h3>
-                    <p className={styles.PopularParagraph}>
+                    <p className={styles.popularParagraph}>
                       Total Likes: {profile.total_likes}
                     </p>
                   </div>
@@ -104,7 +104,7 @@ const PopularProfilesPage = () => {
                         alt="Profile"
                       />
                     )}
-                    <h3 className={styles.PopularHeading}>
+                    <h3 className={styles.popularHeading}>
                       {follower.profile.display_name}
                     </h3>
                   </div>

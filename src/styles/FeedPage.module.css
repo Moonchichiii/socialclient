@@ -18,10 +18,6 @@
     justify-content: center;
 }
 
-.LoadingSpinner {
-    margin-top: 50px;
-}
-
 @media (max-width: 1024px) {
     .CardFeed {
         gap: 10px;

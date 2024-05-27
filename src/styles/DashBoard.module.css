@@ -1,85 +1,31 @@
-:root {
-    --background-color-body: #582974;
-    --box-background-color: #534E90;
-    --text-color-white: #FFFFFF;
-    --text-color-dark: #8a8a8a;
-    --text-color-darker: #3a3a3a;
-    --pumpkin: #F9B233;
-    --light-pumpkin: #FFD580;
-    --button-hover: #F9A602;
-    --form-buttons-bg-hover-color: #fffc3b;
-    --form-button-text-color: #fffc3b;
-    --form-button-text-hover-color: #8a8a8a;
-    --button-border-color: #fffc3b;
-    --card-background-color: #ffffffd6;
-    --commentbox-bkg: #e2e3e5;
-    --commentbox-inputbox-bkg: #f0f0f0;
-    --commentbox-border: #ccc;
-    --font-headings: 'Montserrat', sans-serif;
-    --font-text: 'Barlow Condensed', sans-serif;
-}
-
-
-#hero-title {
-    font-size: 3.5rem;
-    color: var(--button-hover);
-}
-
-
-.create-dinner h2 {
-    font-size: 2.5em;
-    margin-bottom: 30px;
-    color: var(--pumpkin);
-    font-family: var(--font-headings);
-}
-
-.form-label {
-    color: var(--text-color-white);
-}
-
-.form-control,
-.form-select {
-    background-color: var(--commentbox-inputbox-bkg);
-    border: 1px solid var(--commentbox-border);
-    color: var(--text-color-darker);
-}
-
-.form-control:focus,
-.form-select:focus {
-    border-color: var(--pumpkin);
-    box-shadow: none;
-}
-
-.btn-primary {
-    background-color: var(--pumpkin);
-    border-color: var(--pumpkin);
-}
-
-.btn-primary:hover {
-    background-color: var(--form-buttons-bg-hover-color);
-    border-color: var(--form-buttons-bg-hover-color);
-}
-
-.form {
-    display: grid;
-    gap: 20px;
-}
-
-.allergies {
+.dashboard {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.allergyItem {
-    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 5px;
-}
-
-
-@media (min-width: 768px) {
-    .form-select, .form-control {
-        max-width: 300px;
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--background-color-body);
+    color: var(--text-color-primary);
+  }
+  
+  .dashboard h1 {
+    font-size: 3rem;
+    color: var(--pumpkin);
+  }
+  
+  p {
+    font-size: 1.25rem;
+    color: var(--text-color-primary);
+  }
+  
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
     }
-}
+  
+    p {
+      font-size: 1rem;
+    }
+  }
+  

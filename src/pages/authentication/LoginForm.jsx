@@ -19,6 +19,9 @@ const LoginForm = () => {
         <div className={`col-md-6 ${styles['form-container']}`}>
         <h1 className={`text-center mb-4 ${styles['form-title']}`}>Social Food Posting</h1>
           <h2 className={`text-center mb-4 ${styles['form-title']}`}>Sign in</h2>
+          <div>
+{error && <Alert variant="danger" className={alert}>{error}</Alert>}
+</div>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="Username" className={styles['form-group']}>
               <Form.Label className={styles['form-label']}>Username</Form.Label>
@@ -47,7 +50,7 @@ const LoginForm = () => {
               />
             </Form.Group>
             <div className="d-flex justify-content-center">
-            {error && <Alert variant="warning" className={styles['error-alert']}>{error}</Alert>}
+           
 
             <Button type="submit" disabled={isLoading} className={`mt-3 ${styles['form-button']} btn btn-primary`}>
               {isLoading ? (

@@ -4,17 +4,12 @@
     --auth-switch-text-color: #F9B233;           
 }
 
-
 .form-group {
     max-width: 400px;
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 1.5rem;
 }
-.form-label {
-    color: var(--text-color-dark);
-}
-
 .auth-switch {
     color: var(--auth-switch-text-color);
 }
@@ -28,13 +23,6 @@
 
 .auth-switch a:hover {
     color:var(--auth-switch-link-hover);
-}
-
-
-.error-alert {
-    margin-top:5px;
-    text-align: center;
-    
 }
 
 .form-button {

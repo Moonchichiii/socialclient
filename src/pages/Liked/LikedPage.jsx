@@ -29,7 +29,7 @@ const LikedPostsPage = () => {
   };
 
   return (
-    <div className={styles.LikedPostsPage}>
+    <div className={styles.likedPostsPage}>
       <h1>Liked Posts</h1>
       <section className={styles.postsSection}>
         {likedPosts.length ? (

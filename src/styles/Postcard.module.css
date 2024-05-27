@@ -1,94 +1,104 @@
-:root {
-    --color-pumpkin: #F9B233;
-    --color-strong: #F9B233;
-}
-
-.PostCard {
-    width: 100%; 
+.postCard {
+    width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-out;
     position: relative;
     overflow: hidden;
     border-radius: 16px;
-    margin-bottom: 20px; 
-    cursor: pointer; 
-}
-
-.PostCard img {
+    margin-bottom: 20px;
+    cursor: pointer;
+    background-color: var(--card-background-color);
+    color: var(--text-color-darker);
+  }
+  
+  .postCard img {
     width: 100%;
-    max-height: 300px; 
-    object-fit: cover; 
-}
-
-.PostCard .btn {    
+    max-height: 300px;
+    object-fit: cover;
+  }
+  
+  .postCard .btn {
     padding: 0.25rem 0.5rem;
-    font-size: 0.8rem; 
-    margin: 0 5px; 
+    font-size: 0.8rem;
+    margin: 0 5px;
     min-width: 80px;
-    color: black!important;       
-}
-
-.profile {
+    color: black !important;
+  }
+  
+  .profile {
     display: flex;
     align-items: center;
-    padding: 8px 12px;    
-    border-bottom: 1px solid #ddd;
-}
-
-.profile img {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--commentbox-border);
+  }
+  
+  .profile img {
     width: 35px;
     height: 35px;
     border-radius: 50%;
     margin-right: 8px;
-}
-
-.profile span {
+  }
+  
+  .profile span {
     margin-right: 10px;
     font-weight: bold;
-    color: var(--color-pumpkin);
-}
-
-.profile .date {
+    color: var(--pumpkin);
+  }
+  
+  .profile .date {
     margin-left: auto;
     font-size: 0.9rem;
     color: #777;
-}
-
-.postDetails {
+  }
+  
+  .postDetails {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-}
-
-.postDetails span {
+    border-bottom: 1px solid var(--commentbox-border);
+  }
+  
+  .postDetails span {
     font-size: 0.9rem;
     color: #777;
-}
-
-.likes {
-    display: flex; 
+  }
+  
+  .likes {
+    display: flex;
     float: right;
-}
-
-strong {
+  }
+  
+  strong {
     color: var(--color-strong);
-}
-
-@media (max-width: 768px) {
-    .PostCard {
-        margin-bottom: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .postCard {
+      margin-bottom: 20px;
     }
-    .PostCard img {
-        height: auto;
+  
+    .postCard img {
+      height: auto;
     }
+  
     .profile img {
-        width: 30px; 
-        height: 30px;
+      width: 30px;
+      height: 30px;
     }
-    .PostCard .btn {
-        padding: 0.25rem 0.4rem; 
-        font-size: 0.7rem; 
+  
+    .postCard .btn {
+      padding: 0.25rem 0.4rem;
+      font-size: 0.7rem;
     }
-}
+  
+    .postDetails {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .postDetails span {
+      margin-top: 5px;
+    }
+  }
+  

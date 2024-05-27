@@ -20,4 +20,6 @@
   .LikedPostsPage h1 {
     margin-bottom: 20px;
   }
-  
+  .postCard {
+    margin-bottom: 10px;
+  }

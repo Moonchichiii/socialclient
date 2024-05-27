@@ -1,54 +1,70 @@
-:root {
-  --background-color-body: #582974;
-  --text-color-primary: #FFFFFF;
-  --button-border-color: #fffc3b;
-  --form-buttons-bg-hover-color: #fffc3b;
-  --form-button-text-hover-color: #8a8a8a;
-}
-
 .sectionWrapper {
-display: flex;
-gap: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 
 .section {
-flex-direction: row;
-background-color: var(--background-color-body);
-padding: 10px;
-border: 1px solid #ddd;
-color: black;
-height: auto;
+  flex: 1;
+  background-color: var(--background-color-body);
+  padding: 20px;
+  border: 1px solid var(--commentbox-border);
+  color: var(--text-color-primary);
+  border-radius: 10px;
 }
 
 .profileItem {
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 10px;
-border-bottom: 1px solid #ddd;
-background-color: var(--background-color-body);
-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid var(--commentbox-border);
+  background-color: var(--background-color-body);
+  color: var(--text-color-primary);
 }
 
 .profileInfo {
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .profileInfo h3 {
-margin-left: 10px;
-color: black;
+  margin-left: 10px;
 }
 
 .profileInfo p {
-margin-left: 10px;
-color: black;
+  margin-left: 10px;
+}
+
+.popularParagraph {
+  margin-left: 10px;
 }
 
 .profileButtons {
-display: flex;
+  display: flex;
 }
 
 .followButton {
-margin-right: 10px;
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .sectionWrapper {
+    flex-direction: column;
+  }
+
+  .profileInfo h3 {
+    font-size: 1rem;
+  }
+
+  .profileInfo p {
+    font-size: 0.875rem;
+    margin-top: 5px;
+  }
+
+  .followButton {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+  }
 }

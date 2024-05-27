@@ -7,7 +7,7 @@ import Alert from 'react-bootstrap/Alert';
 
 export const CurrentUserContext = createContext();
 
-const INACTIVITY = 3 * 6  * 1000; 
+const INACTIVITY = 5 * 60  * 1000; 
 const INTERVAL = 5 * 60 * 1000; 
 
 export const CurrentUserProvider = ({ children }) => {

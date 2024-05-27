@@ -84,15 +84,15 @@ const CommentBox = ({ postId }) => {
   return (
     <>
       <Accordion className={styles.commentBox} defaultActiveKey="0">
-    <Accordion.Item eventKey="0">
-        <Accordion.Header className={styles.accordionHeader}>Comments</Accordion.Header>
-        <Accordion.Body>
+        <Accordion.Item eventKey="0">
+          <Accordion.Header className={styles.accordionHeader}>Comments</Accordion.Header>
+          <Accordion.Body>
             <form onSubmit={handleNewCommentSubmit} className={styles.commentForm}>
               <textarea
                 value={newComment}
                 onChange={handleNewCommentChange}
                 placeholder="Add a comment..."
-                required
+                required  
               />
               <button className={`${styles.btn} btn btn-sm`} type="submit">
                 Post Your Comment

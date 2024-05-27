@@ -1,13 +1,12 @@
 :root {
     --footer-bg:#582974;
-    --footer-text-color:#8a8a8a;
-    
-    --footer-link-color:#534E90;
-    --footer-link-hover:#F9B233;
-
-    --footer-social-icon-color: #FFFFFF;
-    --footer-social-icon-hover: #F9B233;    
+  --footer-text-color:#8a8a8a;  
+  --footer-link-color:#534E90;
+  --footer-link-hover:#F9B233;
+  --footer-social-icon-color: #FFFFFF;
+  --footer-social-icon-hover: #F9B233;    
 }
+
 
 .footer {
     position: relative;

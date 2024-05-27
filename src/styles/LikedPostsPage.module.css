@@ -1,25 +1,25 @@
 .LikedPostsPage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .postsSection {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
- 
-  
-  .LikedPostsPage h1 {
-    margin-bottom: 20px;
-  }
-  .postCard {
-    margin-bottom: 10px;
-  }
+
+.postsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.LikedPostsPage h1 {
+  margin-bottom: 20px;
+}
+
+.postCard {
+  margin-bottom: 20px; 
+}

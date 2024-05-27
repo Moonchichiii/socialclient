@@ -30,7 +30,7 @@
 .navigationbar-brand {
   color: var(--navbrand-text-color);
   font-weight: bold;
-  font-size:3em;
+  font-size: 3em;
   text-decoration: none;
   margin-left: 2rem;
 }
@@ -45,16 +45,14 @@
   flex-direction: column;
   width: 100%;
   position: fixed;
-  top: 0; right: 0; left: 0;
+  top: 0;
+  right: 0;
+  left: 0;
   background-color: var(--offcanvas-bg);
   z-index: 1050;
   transition: color 0.3s ease;
   transition: transform 0.3s ease;    
   transform: translateY(-100%);
-}
-.active-link {
-  color: #f9b233; 
-  font-weight: bold;
 }
 
 .navigationbar-links.open {
@@ -75,7 +73,6 @@
 .navigationbar-links a:hover {
   transition: color 0.3s ease;
   color: var(--offcanvas-link-text-hover);
-
 }
 
 .navigationbar-toggler {
@@ -86,8 +83,7 @@
 }
 
 .icon-open {
-  color: var(--icon-open-color);  
-  
+  color: var(--icon-open-color);
 }
 
 .iconClose {
@@ -96,18 +92,24 @@
 
 .profile-section {  
   display: flex;
-  justify-content: center;  
+  justify-content: center;
   align-items: center;
-  font-size:0.9rem;
+  font-size: 0.9rem;
   margin-left: 1rem;
 }
 
-
 @media (max-width: 768px) {
+  .navigationbar-brand {
+    font-size: 2.5rem; 
+  }
+
+  .navigationbar-links a {
+    font-size: 2rem; 
+  }
 
   .icon-open {
     color: var(--icon-open-color);
-    z-index:1060;
+    z-index: 1060;
   }
   
   .navigationbar-toggler {
@@ -117,28 +119,28 @@
   
   .navigationbar-links {
     display: none;
-    overflow-y: auto; 
-    height: 100vh; 
+    overflow-y: auto;
+    height: 100vh;
   }
-  .profile-section {  
-  display: none;  
-}  
 
-.offcanvas-profile {
-  display: block;  
-  font-size:1.35rem;
-  
-  color:var(--navbar-link-color);
-}
-.offcanvas-profile img:hover { 
-  cursor: pointer;
-  scale: 1.1;
-}
+  .profile-section {
+    display: none;
+  }
 
-span {
-  margin-left:0.7rem;  
-}
+  .offcanvas-profile {
+    display: block;
+    font-size: 1.35rem;
+    color: var(--navbar-link-color);
+  }
 
+  .offcanvas-profile img:hover {
+    cursor: pointer;
+    scale: 1.1;
+  }
+
+  span {
+    margin-left: 0.7rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -168,10 +170,12 @@ span {
   .navigationbar-toggler {
     display: none;
   }
+
   .offcanvas-profile {
-   display: none;
+    display: none;
   }
-  .offcanvas-profile img:hover { 
+
+  .offcanvas-profile img:hover {
     display: none;
   }
 }

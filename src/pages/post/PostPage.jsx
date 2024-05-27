@@ -145,12 +145,12 @@ const PostPage = () => {
                 </Form.Group>
 
                 <Form.Group controlId="postImage">
-                    <Form.Label className='mt-2'>Image</Form.Label>
-                    {postData.imageUrl && <Image src={postData.imageUrl} thumbnail className="mb-2" />}
+                    <Form.Label className='mt-2'>Preview Image</Form.Label>
+                    {postData.imageUrl && <Image src={postData.imageUrl} thumbnail className="mb-2" width={100} height={100} />}
                     <Form.Control
                         type="file"
                         name="image"
-                        onChange={handleImageChange}
+                       onChange={handleImageChange}
                     />
                 </Form.Group>
 

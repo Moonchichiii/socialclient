@@ -43,7 +43,7 @@ function Navigation() {
   }
 
   return (
-    <nav className="navigationbar">
+    <nav className="navigationbar">      
       <NavLink to="/dashboard" className="navigationbar-brand" onClick={closeOffCanvas}>
         Social Food Posting
       </NavLink>

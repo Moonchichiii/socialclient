@@ -4,13 +4,15 @@
   
   --text-color-white: #FFFFFF;
   --text-color-dark: #f0f0f0;
-  --text-color-darker: #d3d0d0;
+  --text-color-darker: #bcbbbb;
   --pumpkin: #F9B233;
   --warning-button-hover: #c00909;
   --text-color-primary: #FFFFFF;
   --text-color-secondary: #3a3a3a;
   --form-buttons-bg-hover-color: #fffc3b;
-  --form-button-text-color: #fffc3b;
+  
+  --form-button-text-color: #fcf800;
+  
   --button-border-color: #fffc3b;
   --card-background-color: #ffffffd6;
   --form-button-text-hover-color:#000000;
@@ -86,14 +88,13 @@ h4,
 h5,
 h6 {
   font-family: var(--font-headings);
-  color: var(--text-color-primary);
+  color: var (--text-color-primary);
 }
 
 p {
   font-family: var(--font-text);
   color: var(--text-color-primary);
 }
-
 
 .loading-spinner {
   position: fixed;
@@ -108,6 +109,7 @@ p {
   z-index: 2050;
 }
 
+/* Mobile landscape view */
 @media only screen and (orientation: landscape) and (max-width: 700px) {
   .container,
   .auth-con {
@@ -115,6 +117,7 @@ p {
   }
 }
 
+/* Mobile portrait */
 @media (max-width: 768px) {
   h1 {
     font-size: 2rem;
@@ -130,6 +133,92 @@ p {
 
   p {
     font-size: 1rem;
+  }
+}
+
+/* Tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .button-primary,
+  .btn,
+  .btn-primary,
+  .formButton {
+    font-size: 1.1rem;
+    padding: 0.6rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+  }
+}
+
+/* Tablets in landscape */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .container,
+  .auth-con {
+    margin-top: 8rem;
+  }
+
+  main {
+    padding: 0.5rem; 
+    width: 90%; 
+  }
+
+  h1 {
+    font-size: 2.3rem;
+  }
+
+  .button-primary,
+  .btn,
+  .btn-primary,
+  .formButton {
+    font-size: 1.15rem;
+    padding: 0.55rem;
+  }
+
+  p {
+    font-size: 1.15rem;
+  }
+}
+
+/* Larger screen */
+@media (min-width: 1024px) {
+  .navigationbar {
+    background-color: var(--navbar-bg-color);
+  }
+
+  .navigationbar-links {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    transform: none;
+    background: none;
+  }
+
+  .navigationbar-links a {
+    color: var(--navbar-link-color);
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .navigationbar-links a:hover {
+    color: var(--navbar-link-hover);
+  }
+
+  .navigationbar-toggler {
+    display: none;
+  }
+
+  .offcanvas-profile {
+    display: none;
+  }
+
+  .offcanvas-profile img:hover {
+    display: none;
   }
 }
 

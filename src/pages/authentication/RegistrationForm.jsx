@@ -120,7 +120,7 @@ const RegistrationForm = () => {
               </Button>
             </div>
             <div className="d-flex justify-content-center">
-              <div className={`mt-3 ${styles["auth-switch"]}`}>
+              <div className={`mt-3 mb-4 ${styles["auth-switch"]}`}>
                 Already have an account? <Link to="/login">Sign In</Link>
               </div>
             </div>

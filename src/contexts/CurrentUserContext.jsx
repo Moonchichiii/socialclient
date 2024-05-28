@@ -9,7 +9,7 @@ export const CurrentUserContext = createContext();
 
 export const CurrentUserProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
-    const [isLoading, setIsLoading] = useState(true); // Using isLoading to maintain consistency
+    const [isLoading, setIsLoading] = useState(true); 
     const [message, setMessage] = useState("");
     const [error, setError] = useState(null);
     const navigate = useNavigate();
@@ -31,7 +31,7 @@ export const CurrentUserProvider = ({ children }) => {
             await axiosInstance.post("/api/token/verify/", { token: accessToken }, config);
             const response = await axiosInstance.get("/api/current-user/", config);
             setCurrentUser(response.data);
-            setMessage("");  // Clear any existing message
+            setMessage("");
         } catch (error) {
             console.error("Error verifying token or fetching user data:", error);
             setError(error.toString());

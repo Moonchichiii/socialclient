@@ -11,11 +11,11 @@
   --text-color-secondary: #3a3a3a;
   --form-buttons-bg-hover-color: #fffc3b;
   
-  --form-button-text-color: #fcf800;
+  --form-button-text-color: #048504;
   
   --button-border-color: #fffc3b;
   --card-background-color: #ffffffd6;
-  --form-button-text-hover-color:#000000;
+  --form-button-text-hover-color: #000000;
 
   /* Typography */
   --font-headings: 'Montserrat', sans-serif;
@@ -111,6 +111,7 @@ p {
 
 /* Mobile landscape view */
 @media only screen and (orientation: landscape) and (max-width: 700px) {
+
   .container,
   .auth-con {
     margin-top: 5rem;
@@ -157,14 +158,15 @@ p {
 
 /* Tablets in landscape */
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
   .container,
   .auth-con {
     margin-top: 8rem;
   }
 
   main {
-    padding: 0.5rem; 
-    width: 90%; 
+    padding: 0.5rem;
+    width: 90%;
   }
 
   h1 {
@@ -184,43 +186,6 @@ p {
   }
 }
 
-/* Larger screen */
-@media (min-width: 1024px) {
-  .navigationbar {
-    background-color: var(--navbar-bg-color);
-  }
-
-  .navigationbar-links {
-    display: flex;
-    position: static;
-    flex-direction: row;
-    justify-content: center;
-    transform: none;
-    background: none;
-  }
-
-  .navigationbar-links a {
-    color: var(--navbar-link-color);
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-  }
-
-  .navigationbar-links a:hover {
-    color: var(--navbar-link-hover);
-  }
-
-  .navigationbar-toggler {
-    display: none;
-  }
-
-  .offcanvas-profile {
-    display: none;
-  }
-
-  .offcanvas-profile img:hover {
-    display: none;
-  }
-}
 
 .alert {
   margin-top: 15px;

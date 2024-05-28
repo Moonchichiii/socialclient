@@ -10,6 +10,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(compression());
+app.use(express.static(path.resolve(__dirname, 'public'), {
+  maxAge: '10d',
+  etag: false
+}));
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.resolve(__dirname, 'dist')));

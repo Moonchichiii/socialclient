@@ -11,6 +11,7 @@
   border: 1px solid var(--commentbox-border);
   color: var(--text-color-primary);
   border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .profileItem {

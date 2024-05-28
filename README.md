@@ -177,6 +177,7 @@ npm create vite@latest .
 - Is a hook library for handling asynchronous and
   remote data in React applications.
   It provides features such as caching, syncing, querying, mutations.
+-  https://refine.dev/blog/react-query-guide/#performing-basic-data-fetching
 
 - `lodash` 
 - For utility functions, debounce in search functionality.
@@ -213,6 +214,27 @@ compression@latest
 - **Searchbar**
 
 ## Testing
+
+### Lighthouse
+
+FeedPage First checks : 
+
+![Before](readmecontent/testimages/Lighthouse/lighthouseFeedpage.png)
+
+![After]
+
+### Color Contrast Testing
+
+
+
+### CSS Validation
+
+
+
+
+### ESLint Validation
+
+
 
 ### React Testing Library
 
@@ -388,6 +410,9 @@ You can monitor the deployment process and application logs using the Heroku das
 Special thanks to:
 
 - The Moments Walkthrough Project for guidance and inspiration
+
+- React Query Very Good reading and Source of information! 
+-  https://refine.dev/blog/react-query-guide/#performing-basic-data-fetching
 
 # React + Vite
 

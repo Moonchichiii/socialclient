@@ -1,19 +1,18 @@
 :root {
-    --footer-bg:#582974;
-  --footer-text-color:#8a8a8a;  
-  --footer-link-color:#534E90;
-  --footer-link-hover:#F9B233;
-  --footer-social-icon-color: #FFFFFF;
-  --footer-social-icon-hover: #F9B233;    
+    --footer-bg: #582974;
+    --footer-text-color: #8a8a8a;
+    --footer-link-color: #2011c6;
+    --footer-link-hover: #F9B233;
+    --footer-social-icon-color: #FFFFFF;
+    --footer-social-icon-hover: #F9B233;
 }
 
-
 .footer {
-    position: relative;
     background-color: var(--footer-bg);
     color: var(--footer-text-color);
     padding: 20px;
     text-align: center;
+    flex-shrink: 0;
 }
 
 .footerContent {
@@ -39,31 +38,29 @@
 
 .socialIcon {
     margin-left: 8px;
-    font-size: 2rem; 
+    font-size: 2rem;
     color: var(--footer-social-icon-color);
     transition: transform 3s ease-in-out;
 }
 
 .socialIcon:hover {
     transition: color 0.3s ease;
-    color:var(--footer-social-icon-hover);
+    color: var(--footer-social-icon-hover);
 }
 
-
-
 @media (max-width: 768px) {
-
     .footerContent {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
-    .footerLink { 
+
+    .footerLink {
         order: 2;
     }
-    .socialIcon { 
-        order:1;
+
+    .socialIcon {
+        order: 1;
     }
-       
-  }
+}

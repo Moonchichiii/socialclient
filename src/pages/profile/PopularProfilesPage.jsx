@@ -20,7 +20,7 @@ const PopularProfilesPage = () => {
   } = useFollow();
 
   return (
-    <div className="text-center">
+    <div className="text-center mb-4">
       <h1>Popular Profiles & Followers</h1>
       {profilesMessage && (
         <Alert variant={profilesMessageType}>{profilesMessage}</Alert>
@@ -28,8 +28,8 @@ const PopularProfilesPage = () => {
       {followMessage && (
         <Alert variant={followMessageType}>{followMessage}</Alert>
       )}
-      <div className={styles.sectionWrapper}>
-        <section className={styles.section}>
+      <div className={`${styles.sectionWrapper} mb-4`}>
+        <section className={`${styles.section} mb-3`}>
           <h2>Popular Profiles</h2>
           {profiles.length ? (
             <ListGroup>
@@ -85,12 +85,12 @@ const PopularProfilesPage = () => {
             <p>No popular profiles found.</p>
           )}
         </section>
-        <section className={styles.section}>
+        <section className={`${styles.section} mb-5`}>
           <h2>Your Following List</h2>
           {followingList.length ? (
-            <ListGroup>
+            <ListGroup className="mb-4">
               {followingList.map((follower) => (
-                <ListGroup.Item
+                <ListGroup.Item 
                   key={follower.id}
                   className={styles.profileItem}
                 >

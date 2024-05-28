@@ -66,13 +66,13 @@
   .profile span {
     margin-right: 10px;
     font-weight: bold;
-    color: var(--pumpkin);
+    color: var(--text-color-secondary);
   }
   
   .profile .date {
     margin-left: auto;
     font-size: 0.9rem;
-    color: #777;
+    color: var(--text-color-secondary);
   }
   
   .postDetails {
@@ -85,7 +85,7 @@
   
   .postDetails span {
     font-size: 0.9rem;
-    color: #777;
+    color: var(--text-color-secondary);
   }
   
   .likes {

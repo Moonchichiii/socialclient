@@ -83,27 +83,26 @@ function Navigation() {
           </span>
         </div>
         <NavLink to="/dashboard" onClick={closeOffCanvas}>
-          Home <FontAwesomeIcon icon={faHome} />
-        </NavLink>
-        <NavLink to="/dashboard/feed" onClick={closeOffCanvas}>
-          Feed <FontAwesomeIcon icon={faList} />
-        </NavLink>
-        <NavLink to="/dashboard/liked" onClick={closeOffCanvas}>
-          Liked <FontAwesomeIcon icon={faHeart} />
-        </NavLink>
-        <NavLink to="/dashboard/popular" onClick={closeOffCanvas}>
-        Popular Profiles <FontAwesomeIcon icon={faStar} />
-      </NavLink>
-        <NavLink to="/dashboard/post" onClick={closeOffCanvas}>
-          Post <FontAwesomeIcon icon={faPlus} />
-        </NavLink>
-        <NavLink to="/dashboard/profile" onClick={closeOffCanvas}>
-          Profile <FontAwesomeIcon icon={faUser} />
-        </NavLink>
-
-        <a href="#" onClick={handleLogout}>
-          Logout <FontAwesomeIcon icon={faSignOutAlt} />
-        </a>
+  Home <FontAwesomeIcon icon={faHome} />
+</NavLink>
+<NavLink to="/dashboard/feed" onClick={closeOffCanvas}>
+  Feed <FontAwesomeIcon icon={faList} />
+</NavLink>
+<NavLink to="/dashboard/liked" onClick={closeOffCanvas}>
+  Liked <FontAwesomeIcon icon={faHeart} />
+</NavLink>
+<NavLink to="/dashboard/popular" onClick={closeOffCanvas}>
+  Popular Profiles <FontAwesomeIcon icon={faStar} />
+</NavLink>
+<NavLink to="/dashboard/post" onClick={closeOffCanvas}>
+  Post <FontAwesomeIcon icon={faPlus} />
+</NavLink>
+<NavLink to="/dashboard/profile" onClick={closeOffCanvas}>
+  Profile <FontAwesomeIcon icon={faUser} />
+</NavLink>
+<a href="#" onClick={handleLogout}>
+  Logout <FontAwesomeIcon icon={faSignOutAlt} />
+</a>
       </div>
     </nav>
   );

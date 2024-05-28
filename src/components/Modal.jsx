@@ -10,7 +10,8 @@ function PostModal({ post, show, onHide }) {
       </Modal.Header>
 
       <Modal.Body className={styles.modalBody}>
-        <img src={post.image} alt="Recipe" className={`${styles.imgFluid} mb-3`} />
+        <img src={post.image} alt={`${post.title} image`} className={`${styles.imgFluid} mb-3`} />        
+        
         <p><strong>Description:</strong> {post.description}</p>
         <ListGroup variant="flush">
           <ListGroup.Item>

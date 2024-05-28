@@ -7,17 +7,17 @@ import LoadingSpinner from "./components/LoadingSpinner";
 
 // Lazy loaded components
 const LoginForm = React.lazy(() => import("./pages/authentication/LoginForm"));
-const RegistrationForm = React.lazy(() =>
-  import("./pages/authentication/RegistrationForm")
-);
+const RegistrationForm = React.lazy(() => import("./pages/authentication/RegistrationForm"));
 const Dashboard = React.lazy(() => import("./pages/dashboard/DashBoard"));
 
-// Sub routes of layout ( rendered in the layout outlet )
+// Sub routes of layout (rendered in the layout outlet)
 const ProfilePage = React.lazy(() => import("./pages/profile/ProfilePage"));
 const FeedPage = React.lazy(() => import("./pages/feed/FeedPage"));
 const LikedPage = React.lazy(() => import("./pages/Liked/LikedPage"));
 const PostPage = React.lazy(() => import("./pages/post/PostPage"));
 const Popular = React.lazy(() => import("./pages/profile/PopularProfilesPage"));
+
+const NotFoundPage = React.lazy(() => import("./pages/NotFoundPage"));
 
 const App = () => {
   const { currentUser, loading } = useCurrentUser();
@@ -42,10 +42,11 @@ const App = () => {
             <Route path="*" element={<Navigate replace to="/dashboard" />} />
           </Route>
         ) : (
-          <> 
+          <>
+            <Route path="/" element={<Navigate replace to="/login" />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegistrationForm />} />
-            <Route path="*" element={<Navigate replace to="/login" />} />      
+            <Route path="*" element={<NotFoundPage />} />
           </>
         )}
       </Routes>

@@ -30,11 +30,6 @@ The aim of the **Social Food Posting platform** is to provide a space where user
 - **Follow Users:** Follow others who share similar gastronomic interests.
 - **Likes and Comments:** Interact with the community by liking and commenting on each other's content.
 
-### Dinner Clubs
-
-- **Join Existing Clubs:** Participate in dinner clubs that suit your taste.
-- **Start Your Own Club:** Invite other users to join you at home for shared dining experiences, creating a personalized dinner club.
-
 ## Design
 
 ## Mockups
@@ -89,10 +84,11 @@ It is used for developing servers and provides small, robust tooling for HTTP se
 
 ## Reusabl components
 
-- Searchbar
+
 - Modal
 - PostCard
-
+- Searchbar
+[back]
 ## Setup and Installation
 
 1.  **Clone the Repository**

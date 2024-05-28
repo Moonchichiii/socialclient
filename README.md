@@ -129,7 +129,9 @@ The aim of the **Social Food Posting platform** is to provide a dynamic and simp
  <img src="readmecontent/images/landingpagemobile.png" alt="" width="210"/>
  <img src="readmecontent/images/landingpage2mobile.png" alt="" width="220" height="320"/>
  <img src="readmecontent/images/dashboardmobile.png" alt="dashboardfirstplan" width="220"/>
- <img src="readmecontent/images/newdashbord.png" alt="seconddashboard" width="250" height="390"/> <img src="readmecontent/images/navigationmobile.png" alt="mobileOffcanvas" width="330" height="390"/>
+ 
+ <img src="readmecontent/images/newdashbord.png" alt="seconddashboard" width="250" height="390"/> 
+ <img src="readmecontent/images/navigationmobile.png" alt="mobileOffcanvas" width="330" height="390"/>
 </p>
 
 **Had to skip the dinner club idea, due to time constraint**
@@ -164,27 +166,29 @@ npm create vite@latest .
 
 ## Dependencies
 
-2. **Install Dependencies**
-
-- **Axios**  - Axios is a promise-based HTTP client compatible with node.jsand across browsers.
-- **Bootstrap**  - For responsive design and pre-styled components. https://react-bootstrap.github.io/
-- **React Loader Spinner** - Provides simple React.js spinner component which can be implemented
+- `axios`
+- Axios is a promise-based HTTP client compatible with node.jsand across browsers.
+- `bootstrap`
+- For responsive design and pre-styled components.
+- `react-loader-spinner` 
+- provides simple React.js spinner component which can be implemented
   for async wait operation before data load to the view
-
-- **React Query** - Is a hook library for handling asynchronous and
+- `react-query` 
+- Is a hook library for handling asynchronous and
   remote data in React applications.
   It provides features such as caching, syncing, querying, mutations.
 
-- **Lodash** - For utility functions, debounce in search functionality.
-
-- **JS Cookie**  - For managing cookies,for authentication.
-
-- **FontAwesome** - To use the icons.
-
-- **Express** - Express is a fast, unopinionated, minimalist web framework for Node.js
+- `lodash` 
+- For utility functions, debounce in search functionality.
+- `js-cookie` 
+- For managing cookies,for authentication.
+- `@fortawesome/free-solid-svg-icons`
+- To use the iconic font, CSS, and SVG framework in your project.
+- `Express` 
+- Express is a fast, unopinionated, minimalist web framework for Node.js
 It is used for developing servers and provides small, robust tooling for HTTP servers
-
-- **Compression** - https://www.npmjs.com/package/compression
+- `compression` 
+- https://www.npmjs.com/package/compression
 
 ```
 npm install axios@latest 

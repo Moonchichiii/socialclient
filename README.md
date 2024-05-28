@@ -1,5 +1,3 @@
-<body>
-
 # Social Food Posting - Frontend
 
 ## Table of Contents
@@ -94,28 +92,28 @@ https://github.com/users/Moonchichiii/projects/36/views/2
 
 ## Dependencies
 
-- `axios`
+### `axios`
 - Axios is a promise-based HTTP client compatible with node.jsand across browsers.
-- `bootstrap`
+### `bootstrap`
 - For responsive design and pre-styled components.
-- `react-loader-spinner` 
+### `react-loader-spinner` 
 - provides simple React.js spinner component which can be implemented
   for async wait operation before data load to the view
-- `react-query` 
+### `react-query` 
 - Is a hook library for handling asynchronous and
   remote data in React applications.
   It provides features such as caching, syncing, querying, mutations.
 
-- `lodash` 
+### `lodash` 
 - For utility functions, debounce in search functionality.
-- `js-cookie` 
+### `js-cookie` 
 - For managing cookies,for authentication.
-- `@fortawesome/free-solid-svg-icons`
+### `@fortawesome/free-solid-svg-icons`
 - To use the iconic font, CSS, and SVG framework in your project.
-- `Express` 
+### `Express` 
 - Express is a fast, unopinionated, minimalist web framework for Node.js
 It is used for developing servers and provides small, robust tooling for HTTP servers
-- `compression` 
+### `compression` 
 - https://www.npmjs.com/package/compression
 
 [Back to top](#)
@@ -314,4 +312,3 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-</body>

@@ -1,90 +1,146 @@
-<body>
-
 # Social Food Posting - Frontend
-
-## Table of Contents
-
-1.  [Project Overview](#project-overview)
-2.  [Design](#design)
-3.  [Technologies](#technologies)
-4.  [Dependencies](#dependencies)
-5.  [Reusable Components](#reuseable-components)
-6.  [Setup and Installation](#setup-and-installation)
-7.  [Testing](#Testing)
-8.  [Deployment](#deployment)
-9.  [Credits](#credits)
-
 
 <img src="readmecontent/responsive.png" alt="LandingPage">
 
-
 ## 👉 [Link to Live Project](https://socialclient-eaf34c2355da.herokuapp.com/) 
+
+## Table of Contents
+
+1. [Project Overview](#project-overview)
+   - [Objective](#objective)
+   - [User Interaction](#user-interaction)   
+   - [Administrative Features](#administrative-features)
+   - [Future Enhancements](#future-enhancements)
+2. [Design & Planning](#design-and-planning)
+   - [Kanban Board](#kanban-board)
+   - [Mockups](#mockups)
+   - [Mobile View](#mobile-view)
+   - [Color Palette](#color-palette)
+3. [Technologies](#technologies)
+4. [Dependencies](#dependencies)
+   - [Axios](#axios)
+   - [Bootstrap](#bootstrap)
+   - [React Loader Spinner](#react-loader-spinner)
+   - [React Query](#react-query)
+   - [Lodash](#lodash)
+   - [JS Cookie](#js-cookie)
+   - [FontAwesome](#fortawesome)
+   - [Express](#express)
+   - [Compression](#compression)
+5. [Reusable Components](#reusable-components)
+   - [Modal](#modal)
+   - [PostCard](#postcard)
+   - [Searchbar](#searchbar)
+6. [Setup and Installation](#setup-and-installation)
+   - [Clone the Repository](#clone-the-repository)
+   - [Install Dependencies](#install-dependencies)
+   - [Start the Development Server](#start-the-development-server)
+7. [Testing](#testing)
+   - [React Testing Library](#react-testing-library)
+8. [Deployment](#deployment)
+   - [Heroku Deployment](#heroku-deployment)
+     - [Create a Heroku App](#create-a-heroku-app)
+     - [Add Node.js Buildpack](#add-nodejs-buildpack)
+     - [Build the Project](#build-the-project)
+       - [Option 1: Build Locally](#option-1-build-locally)
+       - [Option 2: Let Heroku Build](#option-2-let-heroku-build)
+     - [Prepare the Project for Heroku Deployment](#prepare-the-project-for-heroku-deployment)
+       - [Add a Procfile](#add-a-procfile)
+       - [Configure package.json](#configure-packagejson)
+     - [Deploy The Project](#deploy-the-project)
+     - [Configure Environment Variables](#configure-environment-variables)
+     - [Post-Deployment](#post-deployment)
+9. [Credits](#credits)
 
 ## Project Overview
 
-## Objective
+### Objective
 
-The aim of the **Social Food Posting platform** is to provide a space where users can:
+The aim of the **Social Food Posting platform** is to provide a dynamic and simple space where users can:
 
-- Share their culinary creations.
-- Connect with other food lovers.
-- Organize or join dinner clubs with like-minded individuals.
+- **Share their culinary creations:** Users can post photos, recipes, and descriptions of the dishes they created.
+- **Connect with other food lovers:** Share ideas, inspire one another, and comment on their creations.
 
-## Features
+#### User Interaction
 
-### User Interaction
+- **User Registration and Authentication:**
+  - **Sign Up:** New users can register on the platform with a username, email, and password.
+  - **Login/Logout:** Registered users can log in and out securely.
+  - **Profile Management:** Users can create and manage their profiles, including uploading profile pictures and adding a bio.
 
-- **Create Posts:** Users can create posts showcasing their culinary skills.
-- **Follow Users:** Follow others who share similar gastronomic interests.
-- **Likes and Comments:** Interact with the community by liking and commenting on each other's content.
+- **Create Posts:**
+  - **Post Creation:** Users can create posts with photos of their culinary creations, along with detailed descriptions, recipes, and ingredients.
+  - **Edit and Delete Posts:** Users can edit or delete their posts as needed.
 
-[Back to top](#)  
+- **Follow Users:**
+  - **Following and Followers:** Users can follow others to stay updated with their latest posts and activities.
+  - **Follower Notifications:** Users receive notifications when they gain new followers.
 
-### link to the project board. 
+- **Likes and Comments:**
+  - **Liking Posts:** Users can like posts they find interesting or inspiring.
+  - **Commenting on Posts:** Users can leave comments on posts to provide feedback, ask questions, or share thoughts.
+  - **Comment Management:** Users can edit or delete their comments.
 
-https://github.com/users/Moonchichiii/projects/36/views/2
+- **Explore and Discover:**
+  - **Search Functionality:** Users can search for posts and users based on keywords.  
 
-## Design
+### Administrative Features
+
+- **User Management:**
+  - **Profile Update:** Able to update profile name (will not change the login username), update profile image, and add a bio.
+  - **Content Moderation:** Super-users can review and moderate user-generated content to ensure it is valid to be published.
+
+- **Analytics Insights:**
+  - **Likes Tracking:** On the Popular Profiles page, users can follow other profiles and see a list of the most popular profiles based on likes on their posts.
+
+### Future Enhancements
+
+- **Dinner Clubs:** Host and invite other profiles for dinners at your home. (Ran out of time to add this feature.)
+
+[Back to top](#table-of-contents)  
+
+## Design and Planning
+
+### Kanban Board
+
+- **Development Process:** While working on this project, an agile development approach was followed as much as possible.
+- **Development Preparation:** The initial steps involved thorough planning of the website, creating a class diagram for the models, and wireframes for the UI.
+- **Feature Tracking & Task Management:** Features were categorized and moved through different columns (Todo, In Progress, Done) as they were worked on and completed.
+
+👉 [Project Board link](https://github.com/users/Moonchichiii/projects/36/views/)
 
 ### Mockups
 **Created with Balsamiq**
 <p>
  <img src="readmecontent/images/landingpagefullscreen.png" alt="LandingPage" width="400" height="300"/>
  <img src="readmecontent/images/signup_full_screen.png" alt="Signup" width="400" height="300"/>
- 
  <img src="readmecontent/images/Dashboard_dinnerClub.png" alt="Dashboard" width="400" height="300"/>
  <img src="readmecontent/images/Dashboardchange.png" alt="Dashboardchange" width="400" height="300"/>
- 
  <img src="readmecontent/images/feedpagefullscreen.png" alt="Feedpage" width="400" height="300"/>
  <img src="readmecontent/images/likedfullscreen.png" alt="Likedpage" width="400" height="300"/>
-
- 
  <img src="readmecontent/images/likedfullscreen.png" alt="LikedPosts" width="400" height="300"/>
  <img src="readmecontent/images/popularAndFollowersfullscreen.png" alt="popularProfiles" width="400" height="300"/>
-
  <img src="readmecontent/images/createpostfullscreen.png" alt="CreatePost" width="400" height="300"/>
  <img src="readmecontent/images/profileupdatefullscreen.png" alt="ProfileUpdate" width="400" height="300"/>
-  
- </p>
+</p>
 
 ## Mobile View
 <p>
  <img src="readmecontent/images/landingpagemobile.png" alt="" width="210"/>
  <img src="readmecontent/images/landingpage2mobile.png" alt="" width="220" height="320"/>
- 
  <img src="readmecontent/images/dashboardmobile.png" alt="dashboardfirstplan" width="220"/>
  <img src="readmecontent/images/newdashbord.png" alt="seconddashboard" width="250" height="390"/> <img src="readmecontent/images/navigationmobile.png" alt="mobileOffcanvas" width="330" height="390"/>
+</p>
 
- **Had to skip the dinner club idea, due to time constraint**
- </p>
- 
- [Back to top](#)  
+**Had to skip the dinner club idea, due to time constraint**
+
+[Back to top](#table-of-contents)  
 
 ### Color Palette
 
 [Coolors Color Palette](https://coolors.co/)
 <br>
-![Coolors](<readmecontent/images/Screenshot 2024-04-20 103846.png>)
+![Coolors](readmecontent/images/Screenshot%202024-04-20%20103846.png)
 
 - **_Fonts Used_**: 'Montserrat' for headings and 'Barlow Condensed' for text.
 
@@ -92,56 +148,78 @@ https://github.com/users/Moonchichiii/projects/36/views/2
 
 - Vite + React
 
+### Or if you want to start from a clean sheet : 
+- How install and get started with Vite + React : 
+
+Install Node.js
+
+- https://nodejs.org/en
+
+
+2. Create a Vite + React Project
+Open your terminal and run the following command to create a new Vite project with React:
+```
+npm create vite@latest . 
+```
+
 ## Dependencies
 
-- `axios`
-- Axios is a promise-based HTTP client compatible with node.jsand across browsers.
-- `bootstrap`
-- For responsive design and pre-styled components.
-- `react-loader-spinner` 
-- provides simple React.js spinner component which can be implemented
+2. **Install Dependencies**
+
+- **Axios**  - Axios is a promise-based HTTP client compatible with node.jsand across browsers.
+- **Bootstrap**  - For responsive design and pre-styled components. https://react-bootstrap.github.io/
+- **React Loader Spinner** - Provides simple React.js spinner component which can be implemented
   for async wait operation before data load to the view
-- `react-query` 
-- Is a hook library for handling asynchronous and
+
+- **React Query** - Is a hook library for handling asynchronous and
   remote data in React applications.
   It provides features such as caching, syncing, querying, mutations.
 
-- `lodash` 
-- For utility functions, debounce in search functionality.
-- `js-cookie` 
-- For managing cookies,for authentication.
-- `@fortawesome/free-solid-svg-icons`
-- To use the iconic font, CSS, and SVG framework in your project.
-- `Express` 
-- Express is a fast, unopinionated, minimalist web framework for Node.js
+- **Lodash** - For utility functions, debounce in search functionality.
+
+- **JS Cookie**  - For managing cookies,for authentication.
+
+- **FontAwesome** - To use the icons.
+
+- **Express** - Express is a fast, unopinionated, minimalist web framework for Node.js
 It is used for developing servers and provides small, robust tooling for HTTP servers
-- `compression` 
-- https://www.npmjs.com/package/compression
 
-[Back to top](#)
+- **Compression** - https://www.npmjs.com/package/compression
 
-## Reusabl components
+```
+npm install axios@latest 
+bootstrap@latest 
+react-loader-spinner@latest 
+@tanstack/react-query@latest 
+lodash@latest 
+js-cookie@latest 
+@fortawesome/react-fontawesome@latest 
+express@latest 
+compression@latest
+```
 
-- Modal
-- PostCard
-- Searchbar
 
+[Back to top](#table-of-contents)
+
+
+## Reusable Components
+
+- **Modal**
+- **PostCard**
+- **Searchbar**
 
 ## Testing
 
 ### React Testing Library
 
 - https://dev.to/mbarzeev/testing-a-simple-component-with-react-testing-library-5bc6
-
 - https://jestjs.io/docs/tutorial-react
 
-
-
-### 
+[Back to top](#table-of-contents)
 
 ## Setup and Installation
 
-1.  **Clone the Repository**
+1. **Clone the Repository**
 
     ![alt text](readmecontent/images/clone-2.png)
     ![alt text](readmecontent/images/clone-3.png)
@@ -314,4 +392,3 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-</body>

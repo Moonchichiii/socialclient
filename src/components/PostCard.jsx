@@ -35,7 +35,7 @@ const PostCard = ({ post, editPost, deletePost, publishPost, onLikeChange }) => 
 
   return (
     <>
-      <Card className={styles.PostCard}>
+      <Card className={styles.postCard}>
         <div className={styles.profile}>
           <img src={post.profile_image} alt={`${post.display_name}'s profile`} />
           <span>{post.display_name}</span>

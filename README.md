@@ -234,6 +234,11 @@ FeedPage First checks :
 
 ### ESLint Validation
 
+![Eslint](readmecontent/testimages/eslint.png)
+
+- Currentuser in the postcard is for the publish function. Not fixing it. 
+- Alert error is empty, errors messages sent from the backend. 
+- Response in ProfilePage is Successfull update message - Not fixing it.
 
 
 ### React Testing Library

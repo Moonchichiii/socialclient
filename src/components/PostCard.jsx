@@ -81,4 +81,3 @@ const PostCard = ({ post, editPost, deletePost, publishPost, onLikeChange }) => 
 };
 
 export default PostCard;
-`

@@ -13,6 +13,7 @@ import { format } from "@cloudinary/url-gen/actions/delivery";
 import { quality } from "@cloudinary/url-gen/actions/delivery";
 import { auto } from "@cloudinary/url-gen/actions/resize";
 
+/* eslint-disable no-unused-vars */
 const PostCard = ({
   post,
   editPost,

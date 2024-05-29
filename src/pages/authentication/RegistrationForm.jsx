@@ -109,7 +109,7 @@ const RegistrationForm = () => {
               )}
             </Form.Group>
             <div className="d-flex justify-content-center">
-              {error && <Alert variant="danger">{error}</Alert>}
+              {error.general && <Alert variant="danger">{error.general}</Alert>}
               <Button type="submit" disabled={isLoading} className={`mt-3 ${styles['form-button']} btn btn-primary`}>
                 {isLoading ? (
                   <>

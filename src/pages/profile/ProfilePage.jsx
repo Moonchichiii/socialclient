@@ -55,9 +55,11 @@ const ProfilePage = () => {
         axiosInstance.put(`/api/profiles/${currentUser.profile_id}/`, formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
         }).then(response => {
-            verifyAndFetchUser(); 
+            verifyAndFetchUser();
+            setAlert({ type: 'success', message: 'Profile updated successfully!' });
         }).catch(error => {
             console.error("Failed to update profile:", error);
+            setAlert({ type: 'danger', message: 'Failed to update profile. Please try again!' });
         });
     };        
     

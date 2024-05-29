@@ -1,6 +1,5 @@
 import React, { createContext, useState, useContext, useCallback, useMemo, useEffect } from 'react';
 import axiosInstance from '../api/axiosDefaults';
-import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Alert from 'react-bootstrap/Alert';
@@ -12,7 +11,6 @@ export const CurrentUserProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true); 
     const [message, setMessage] = useState("");
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
 
     const verifyAndFetchUser = useCallback(async () => {
         setIsLoading(true);
@@ -58,7 +56,7 @@ export const CurrentUserProvider = ({ children }) => {
         setMessage,
         error,
         setError
-    }), [currentUser, isLoading, message, error]);
+    }), [currentUser, isLoading, message, error, verifyAndFetchUser]); 
 
     return (
         <CurrentUserContext.Provider value={value}>

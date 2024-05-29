@@ -32,7 +32,7 @@ const FeedPage = () => {
       <SearchBar onSearch={onSearch} />
       <div className={styles.CardFeed}>
         {postsData.pages && postsData.pages.length > 0 ? (
-          postsData.pages.map((page, pageIndex) =>
+          postsData.pages.map((page) =>
             page.map(post => (
               <PostCard
                 post={post}

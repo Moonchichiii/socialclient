@@ -88,7 +88,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-headings);
-  color: var (--text-color-primary);
+  color: var(--text-color-primary);
 }
 
 p {

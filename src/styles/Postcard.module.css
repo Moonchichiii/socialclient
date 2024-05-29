@@ -3,8 +3,7 @@
   --text-color-dark: #f0f0f0;  
   --text-color-darker: #3a3a3a;
   --warning-button-hover: #c00909;  
-  --text-color-primary: #000000;  
-  --text-color-secondary: #3a3a3a;
+  --text-color-primary: #000000;    
   --button-postcard-text-color: #4a4a4a;
   --card-background-color: #ffffff;
   --form-button-text-hover-color:#000000;
@@ -36,6 +35,10 @@
   margin: 0 5px;
   min-width: 80px;
   color: var(--button-postcard-text-color);
+}
+
+.btn {
+  color: var(--text-color-secondary);
 }
 
 .profile {

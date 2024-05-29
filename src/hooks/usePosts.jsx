@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import axiosInstance from '../api/axiosDefaults';
 import { useMutation, useQueryClient } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 
 const usePosts = () => {
   const [data, setData] = useState({ pages: [] });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showAlert, setShowAlert] = useState(false);
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -49,7 +52,14 @@ const usePosts = () => {
       await axiosInstance.delete(`/api/posts/${postId}/`);
     },
     {
-      onSuccess: () => queryClient.invalidateQueries('posts')
+      onSuccess: () => {
+        queryClient.invalidateQueries('posts');
+        setShowAlert(true);
+        setTimeout(() => {
+          setShowAlert(false);
+          navigate('/feed');
+        }, 2000);
+      }
     }
   );
 
@@ -69,7 +79,9 @@ const usePosts = () => {
     editPost,
     deletePost,
     publishPost,
-    onSearch
+    onSearch,
+    showAlert,
+    setShowAlert
   };
 };
 

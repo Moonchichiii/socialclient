@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import PostCard from "../../components/PostCard";
 import usePosts from "../../hooks/usePosts";
 import SearchBar from "../../components/SearchBar";
 import styles from "../../styles/FeedPage.module.css";
+import AlertModal from "../../components/AlertModal";
 
 const FeedPage = () => {
-  const { data, isLoading, error, editPost, deletePost, publishPost, onSearch } = usePosts();
+  const { data, isLoading, error, editPost, deletePost, publishPost, onSearch, showAlert, setShowAlert } = usePosts();
   const [postsData, setPostsData] = useState({ pages: [] });
+  const navigate = useNavigate();
 
   useEffect(() => {
     setPostsData(data);
@@ -22,6 +25,15 @@ const FeedPage = () => {
       )
     }));
   };
+
+  useEffect(() => {
+    if (showAlert) {
+      setTimeout(() => {
+        setShowAlert(false);
+        navigate('/feed');
+      }, 2000);
+    }
+  }, [showAlert, setShowAlert, navigate]);
 
   if (isLoading) return <div className={styles.LoadingSpinner}>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -48,9 +60,15 @@ const FeedPage = () => {
           <div>No posts available.</div>
         )}
       </div>
+      <AlertModal
+        show={showAlert}
+        onHide={() => setShowAlert(false)}
+        message="Post deleted successfully!"
+      />
     </div>
   );
 };
 
 export default FeedPage;
+
 

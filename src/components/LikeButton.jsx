@@ -12,7 +12,7 @@ const LikeButton = ({ postId, isLiked, likesCount, onLikeChange = () => {} }) =>
 
   const toggleLike = async () => {
     if (loading) return;
-  
+
     setLoading(true);
     setError("");
     try {
@@ -22,8 +22,11 @@ const LikeButton = ({ postId, isLiked, likesCount, onLikeChange = () => {} }) =>
       setCount(response.data.likes_count);
       onLikeChange(postId, response.data.likes_count);
     } catch (error) {
-      console.error('Error toggling like:', error.response?.data || error.message || 'Unknown error');
-      setError(error.response?.data.error || error.message || 'An error occurred');
+      const errorMessage = error.response?.data?.error || error.message || 'An error occurred';
+      if (errorMessage !== 'Already liked') {
+        console.error('Error toggling like:', errorMessage);
+      }
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -42,7 +45,7 @@ const LikeButton = ({ postId, isLiked, likesCount, onLikeChange = () => {} }) =>
       </div>
       {error && (
         <div className="alert alert-danger mt-2" role="alert">
-          {error} 
+          {error}
         </div>
       )}
     </div>
@@ -50,5 +53,6 @@ const LikeButton = ({ postId, isLiked, likesCount, onLikeChange = () => {} }) =>
 };
 
 export default LikeButton;
+
 
 

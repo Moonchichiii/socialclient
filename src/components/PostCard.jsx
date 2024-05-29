@@ -6,7 +6,7 @@ import LikeButton from "./LikeButton";
 import PostModal from "./Modal"; 
 import CommentBox from "./CommentBox";
 import styles from "../styles/Postcard.module.css"; 
-/* eslint-disable no-unused-vars */
+
 const PostCard = ({ post, editPost, deletePost, publishPost, onLikeChange }) => {
   const { currentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ const PostCard = ({ post, editPost, deletePost, publishPost, onLikeChange }) => 
             <Card.Title className="mt-2">{post.title}</Card.Title>
             <Card.Text style={{ color: "#000" }}>{post.description}</Card.Text>
             </div>
-          <div className={styles.functionButtons}>
+          <div className={`${styles.functionButtons} mb-2`}>
             <Button className={styles.btn} onClick={() => setShowModal(true)}>
               View Full Recipe
             </Button>

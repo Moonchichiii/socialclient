@@ -10,13 +10,8 @@ const Footer = () => {
         <div className={styles.footerSection}>
           © {new Date().getFullYear()} Social Food Posting. All rights reserved.
         </div>
-        <div className={styles.footerSection}>
-          <a href="/terms" className={styles.footerLink}>
-            Terms of Service
-          </a>
-          <a href="/privacy" className={styles.footerLink}>
-            Privacy Policy
-          </a>
+        <div className={styles.footerSection}>       
+        
         </div>
         <div className={styles.footerSection}>
           <a href="https://www.linkedin.com" className={styles.socialIcon}>

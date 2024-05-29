@@ -145,7 +145,7 @@ const PostPage = () => {
                 </Form.Group>
 
                 <Form.Group controlId="postImage">
-                    <Form.Label className='mt-2 text-center'>Preview Image</Form.Label>
+                    <Form.Label className='mt-2 text-center d-flex justify-content-center'>Preview Image</Form.Label>
                     {postData.imageUrl && <Image src={postData.imageUrl} thumbnail className="mb-2 mt-3" width={250} height={100} />}
                     <Form.Control
                         type="file"

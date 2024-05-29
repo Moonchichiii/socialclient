@@ -223,11 +223,15 @@ FeedPage First checks :
 
 ![After]
 
-### Color Contrast Testing
+### Html Validation 
 
-
+👉 [HTML Validation](https://validator.w3.org/nu/?doc=https%3A%2F%2Fsocialclient-eaf34c2355da.herokuapp.com%2F) 
 
 ### CSS Validation
+
+👉 [W3C CSS Validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fsocialclient-eaf34c2355da.herokuapp.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+
+### Color Contrast Testing
 
 
 

@@ -50,8 +50,10 @@ const PostCard = ({ post, editPost, deletePost, publishPost, onLikeChange }) => 
               onLikeChange={handleLikeChange}
             />
           </div>
+          <div className="PostCardText">
           <Card.Title className="mt-2">{post.title}</Card.Title>
           <Card.Text>{post.description}</Card.Text>
+          </div>
           <div className={styles.functionButtons}>
             <Button className={styles.btn} onClick={() => setShowModal(true)}>
               View Full Recipe

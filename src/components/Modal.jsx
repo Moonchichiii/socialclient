@@ -9,7 +9,7 @@ function PostModal({ post, show, onHide }) {
         <Modal.Title className={styles.modalTitle}>{post.title}</Modal.Title>
       </Modal.Header>
       <Modal.Body className={styles.modalBody}>
-        <img src={post.image} alt={`${post.title} image`} className={`${styles.imgFluid} mb-2`} />        
+        <img src={post.image} alt={`${post.title} image`} className={`${styles.imgFluid} mb-2`} />
         <p><strong>Description:</strong> {post.description}</p>
         <ListGroup variant="flush">
           <ListGroup.Item>
@@ -41,6 +41,3 @@ function PostModal({ post, show, onHide }) {
 }
 
 export default PostModal;
-
-
-

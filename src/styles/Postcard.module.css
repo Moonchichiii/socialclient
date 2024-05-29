@@ -1,11 +1,13 @@
-:root {  
+:root {
   --text-color-dark: #f0f0f0;
   --card-text-color: #3a3a3a;
   --card-heading-color: #4a4a4a;
-  --card-background-color: #ffffff;    
-  --card-button-text-hover-color: #000000;
-  --button-postcard-text-color: #3a3a3a;
+  --card-background-color: #ffffff;
+  --card-button-text-color: #ffffff;
+  --card-button-background-color: #3a3a3a;
+  --card-button-hover-background-color: #282828;
   --commentbox-border: #ccc;
+  --form-button-text-color: #076207;
 }
 
 .postCard {
@@ -32,11 +34,14 @@
   font-size: 0.8rem;
   margin: 0 5px;
   min-width: 80px;
-  color: var(--button-postcard-text-color);
+  color: var(--card-button-text-color) !important;
+  background-color: var(--card-button-background-color) !important;
+  border: none;
+  border-radius: 5px;
 }
 
-.btn {
-  color: var(--card-button-text-hover-color);
+.postCard .btn:hover {
+  background-color: var(--card-button-hover-background-color) !important;
 }
 
 .profile {
@@ -104,7 +109,8 @@ strong {
   .postCard .btn {
     padding: 0.25rem 0.4rem;
     font-size: 0.7rem;
-    color: var(--button-postcard-text-color);
+    color: var(--card-button-text-color) !important;
+    background-color: var(--card-button-background-color) !important;
   }
 
   .postDetails {
@@ -167,4 +173,8 @@ strong {
     width: 30px;
     height: 30px;
   }
+}
+
+.PostCardText {
+  color: var(--card-text-color)!important; 
 }

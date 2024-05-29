@@ -13,11 +13,11 @@
 }
 
 .modalTitle {
-  color: var(--text-color-darker);
+  color: var(--card-heading-color);
 }
 
 .profileName {
-  color: var(--text-color-darker);
+  color: var(--card-heading-color);
 }
 
 .modalFooter {
@@ -37,6 +37,17 @@
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
+}
+
+.modalFooter .btn {
+  color: var(--card-button-text-color) !important;
+  background-color: var(--card-button-background-color) !important;
+  border: none;
+  border-radius: 5px;
+}
+
+.modalFooter .btn:hover {
+  background-color: var(--card-button-hover-background-color) !important;
 }
 
 @media (max-width: 768px) {

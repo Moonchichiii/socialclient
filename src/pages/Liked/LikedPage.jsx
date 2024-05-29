@@ -9,8 +9,7 @@ const LikedPostsPage = () => {
   useEffect(() => {
     const fetchLikedPosts = async () => {
       try {
-        const response = await axiosInstance.get("/api/posts/liked-posts/");
-        console.log("Liked Posts:", response.data);
+        const response = await axiosInstance.get("/api/posts/liked-posts/");        
         setLikedPosts(response.data);
       } catch (error) {
         console.error("Failed to fetch liked posts", error.response || error);

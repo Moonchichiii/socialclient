@@ -8,7 +8,7 @@ const PopularProfilesPage = () => {
   const {
     profiles,
     message: profilesMessage,
-    messageType: profilesMessageType,
+    messageType: profilesMessageType
   } = useProfiles();
   const {
     followingList,
@@ -16,7 +16,7 @@ const PopularProfilesPage = () => {
     messageType: followMessageType,
     handleFollow,
     handleUnfollow,
-    isFollowing,
+    isFollowing
   } = useFollow();
 
   return (
@@ -90,7 +90,7 @@ const PopularProfilesPage = () => {
           {followingList.length ? (
             <ListGroup className="mb-4">
               {followingList.map((follower) => (
-                <ListGroup.Item 
+                <ListGroup.Item
                   key={follower.id}
                   className={styles.profileItem}
                 >

@@ -23,7 +23,7 @@ const CommentBox = ({ postId }) => {
         console.error("Failed to fetch comments", error);
       }
     };
-
+  
     fetchComments();
   }, [postId]);
 

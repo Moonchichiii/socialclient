@@ -10,6 +10,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
+    'prettier'
   ],
   ignorePatterns: ['dist'],
   parserOptions: {
@@ -26,9 +27,11 @@ module.exports = {
     'no-undef': 'off',
     'no-unused-vars': ['warn', { varsIgnorePattern: 'React' }],
     'react/prop-types': 'off',
-    'react/no-unescaped-entities': 'off', 
+    'react/no-unescaped-entities': 'off',
+    'no-console': 'warn',
   },
   globals: {
     process: 'readonly',
   },
+  plugins: ['react', 'prettier'],
 };

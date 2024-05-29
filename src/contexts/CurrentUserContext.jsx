@@ -37,9 +37,9 @@ export const CurrentUserProvider = ({ children }) => {
             Cookies.remove("jwt_access_token", { path: '/' });
             Cookies.remove("jwt_refresh_token", { path: '/' });
             setCurrentUser(null);
-        } finally {
+          } finally {
             setIsLoading(false);
-        }
+          }
     }, []);
 
     useEffect(() => {

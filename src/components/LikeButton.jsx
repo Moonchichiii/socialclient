@@ -12,20 +12,18 @@ const LikeButton = ({ postId, isLiked, likesCount, onLikeChange = () => {} }) =>
 
   const toggleLike = async () => {
     if (loading) return;
-
+  
     setLoading(true);
-    setError(""); 
+    setError("");
     try {
       const method = liked ? 'delete' : 'post';
-      console.log(`Toggle like method: ${method}`);
       const response = await axiosInstance[method](`/api/posts/${postId}/post-likes/`);
-      
       setLiked(!liked);
       setCount(response.data.likes_count);
       onLikeChange(postId, response.data.likes_count);
     } catch (error) {
       console.error('Error toggling like:', error.response?.data || error.message || 'Unknown error');
-      setError(error.response?.data.error || error.message || 'An error occurred'); 
+      setError(error.response?.data.error || error.message || 'An error occurred');
     } finally {
       setLoading(false);
     }

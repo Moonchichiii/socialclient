@@ -31,8 +31,7 @@ const useProfilesFollowers = () => {
   const fetchFollowing = async () => {
     try {
       const response = await axiosInstance.get("/api/followers/following/");
-      setFollowing(response.data.results);
-      console.log("Fetched following:", response.data.results);
+      setFollowing(response.data.results);      
     } catch (error) {
       console.error("Error fetching following list", error.response || error);
     }

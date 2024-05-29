@@ -1,12 +1,10 @@
-:root {
-  --text-color-white: #FFFFFF;  
-  --text-color-dark: #f0f0f0;  
-  --text-color-darker: #3a3a3a;
-  --warning-button-hover: #c00909;  
-  --text-color-primary: #000000;    
-  --button-postcard-text-color: #4a4a4a;
-  --card-background-color: #ffffff;
-  --form-button-text-hover-color:#000000;
+:root {  
+  --text-color-dark: #f0f0f0;
+  --card-text-color: #3a3a3a;
+  --card-heading-color: #4a4a4a;
+  --card-background-color: #ffffff;    
+  --card-button-text-hover-color: #000000;
+  --button-postcard-text-color: #3a3a3a;
   --commentbox-border: #ccc;
 }
 
@@ -20,7 +18,7 @@
   margin-bottom: 20px;
   cursor: pointer;
   background-color: var(--card-background-color);
-  color: var(--text-color-secondary);
+  color: var(--card-text-color);
 }
 
 .postCard img {
@@ -38,7 +36,7 @@
 }
 
 .btn {
-  color: var(--text-color-secondary);
+  color: var(--card-button-text-hover-color);
 }
 
 .profile {
@@ -58,13 +56,13 @@
 .profile span {
   margin-right: 10px;
   font-weight: bold;
-  color: var(--text-color-secondary);
+  color: var(--card-text-color);
 }
 
 .profile .date {
   margin-left: auto;
   font-size: 0.9rem;
-  color: var(--text-color-secondary);
+  color: var(--card-text-color);
 }
 
 .postDetails {
@@ -77,7 +75,7 @@
 
 .postDetails span {
   font-size: 0.9rem;
-  color: var(--text-color-secondary);
+  color: var(--card-text-color);
 }
 
 .likes {
@@ -86,7 +84,7 @@
 }
 
 strong {
-  color: var(--text-color-darker);
+  color: var(--card-heading-color);
 }
 
 @media (max-width: 768px) {
@@ -134,11 +132,11 @@ strong {
 }
 
 .modalTitle {
-  color: var(--text-color-darker);
+  color: var(--card-heading-color);
 }
 
 .profileName {
-  color: var(--text-color-darker);
+  color: var(--card-heading-color);
 }
 
 .modalFooter {

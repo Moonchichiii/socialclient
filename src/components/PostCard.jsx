@@ -50,8 +50,8 @@ const PostCard = ({ post, editPost, deletePost, publishPost, onLikeChange }) => 
               onLikeChange={handleLikeChange}
             />
           </div>
-          <Card.Title className="mt-2" style={{ color: 'var(--text-color-secondary)' }}>{post.title}</Card.Title>
-          <Card.Text style={{ color: 'var(--text-color-secondary)' }}>{post.description}</Card.Text>
+          <Card.Title className="mt-2">{post.title}</Card.Title>
+          <Card.Text>{post.description}</Card.Text>
           <div className={styles.functionButtons}>
             <Button className={styles.btn} onClick={() => setShowModal(true)}>
               View Full Recipe
@@ -81,3 +81,4 @@ const PostCard = ({ post, editPost, deletePost, publishPost, onLikeChange }) => 
 };
 
 export default PostCard;
+`

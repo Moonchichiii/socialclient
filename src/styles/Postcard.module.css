@@ -1,13 +1,14 @@
 :root {
-  --text-color-white: #FFFFFF;
-  --text-color-dark: #f0f0f0;
-  --text-color-darker: #d3d0d0;
-  --warning-button-hover: #c00909;
-  --text-color-primary: #FFFFFF;
+  --text-color-white: #FFFFFF;  
+  --text-color-dark: #f0f0f0;  
+  --text-color-darker: #3a3a3a;
+  --warning-button-hover: #c00909;  
+  --text-color-primary: #000000;  
   --text-color-secondary: #3a3a3a;
   --button-postcard-text-color: #4a4a4a;
   --card-background-color: #ffffffd6;
-  --form-button-text-hover-color: #000000;
+  --form-button-text-hover-color:#000000;
+  --commentbox-border: #ccc;
 }
 
 .postCard {
@@ -82,7 +83,7 @@
 }
 
 strong {
-  color: var(--color-strong);
+  color: var(--text-color-darker);
 }
 
 @media (max-width: 768px) {
@@ -112,5 +113,57 @@ strong {
 
   .postDetails span {
     margin-top: 5px;
+  }
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: large;
+}
+
+.imgFluid {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.modalTitle {
+  color: var(--text-color-darker);
+}
+
+.profileName {
+  color: var(--text-color-darker);
+}
+
+.modalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.profileImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .modalFooter {
+    flex-direction: column;
+  }
+
+  .profileImage {
+    width: 30px;
+    height: 30px;
   }
 }

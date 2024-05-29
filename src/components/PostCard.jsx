@@ -12,23 +12,16 @@ import { AdvancedImage } from "@cloudinary/react";
 import { format } from "@cloudinary/url-gen/actions/delivery";
 import { quality } from "@cloudinary/url-gen/actions/delivery";
 import { auto } from "@cloudinary/url-gen/actions/resize";
-
 /* eslint-disable no-unused-vars */
-const PostCard = ({
-  post,
-  editPost,
-  deletePost,
-  publishPost,
-  onLikeChange
-}) => {
+const PostCard = ({ post, editPost, deletePost, publishPost, onLikeChange }) => {
   const { currentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
   const cld = new Cloudinary({
     cloud: {
-      cloudName: import.meta.env.VITE_CLOUD_NAME
-    }
+      cloudName: 'dakjlrean', 
+    },
   });
 
   const optimizeImage = (publicId) => {
@@ -65,20 +58,11 @@ const PostCard = ({
     <>
       <Card className={styles.PostCard}>
         <div className={styles.profile}>
-          <img
-            src={post.profile_image}
-            alt={`${post.display_name}'s profile`}
-          />
+          <img src={post.profile_image} alt={`${post.display_name}'s profile`} />
           <span>{post.display_name}</span>
-          <span className={styles.date}>
-            {new Date(post.created_at).toLocaleDateString()}
-          </span>
+          <span className={styles.date}>{new Date(post.created_at).toLocaleDateString()}</span>
         </div>
-        <AdvancedImage
-          cldImg={optimizeImage(post.image)}
-          className="mb-3"
-          alt={`${post.title} image`}
-        />
+        <AdvancedImage cldImg={optimizeImage(post.image)} className="mb-3" alt={`${post.title} image`} />
         <Card.Body>
           <div className={styles.postDetails}>
             <LikeButton

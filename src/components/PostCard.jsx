@@ -3,33 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import LikeButton from "./LikeButton";
-import PostModal from "./Modal";
+import PostModal from "./Modal"; 
 import CommentBox from "./CommentBox";
-import styles from "../styles/Postcard.module.css";
-
-import { Cloudinary } from "@cloudinary/url-gen";
-import { AdvancedImage } from "@cloudinary/react";
-import { format } from "@cloudinary/url-gen/actions/delivery";
-import { quality } from "@cloudinary/url-gen/actions/delivery";
-import { auto } from "@cloudinary/url-gen/actions/resize";
+import styles from "../styles/Postcard.module.css"; 
 /* eslint-disable no-unused-vars */
 const PostCard = ({ post, editPost, deletePost, publishPost, onLikeChange }) => {
   const { currentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName: 'dakjlrean', 
-    },
-  });
-
-  const optimizeImage = (publicId) => {
-    const image = cld.image(publicId);
-    image.delivery(format("auto")).delivery(quality("auto")).resize(auto());
-    return image;
-  };
-
+  
   const handleDelete = () => {
     deletePost.mutate(post.id);
   };
@@ -46,11 +29,7 @@ const PostCard = ({ post, editPost, deletePost, publishPost, onLikeChange }) => 
     onLikeChange(post.id, newLikesCount);
   };
 
-  if (
-    !post.approved &&
-    post.profile_id !== currentUser.id &&
-    !currentUser.is_superuser
-  ) {
+  if (!post.approved && post.profile_id !== currentUser.id && !currentUser.is_superuser) {
     return null;
   }
 
@@ -62,7 +41,7 @@ const PostCard = ({ post, editPost, deletePost, publishPost, onLikeChange }) => 
           <span>{post.display_name}</span>
           <span className={styles.date}>{new Date(post.created_at).toLocaleDateString()}</span>
         </div>
-        <AdvancedImage cldImg={optimizeImage(post.image)} className="mb-3" alt={`${post.title} image`} />
+        <Card.Img className="mb-3" variant="top" src={post.image} alt={`${post.title} image`} />
         <Card.Body>
           <div className={styles.postDetails}>
             <LikeButton
@@ -78,13 +57,7 @@ const PostCard = ({ post, editPost, deletePost, publishPost, onLikeChange }) => 
             <Button className={styles.btn} onClick={() => setShowModal(true)}>
               View Full Recipe
             </Button>
-            {showModal && (
-              <PostModal
-                show={showModal}
-                onHide={() => setShowModal(false)}
-                post={post}
-              />
-            )}
+            {showModal && <PostModal show={showModal} onHide={() => setShowModal(false)} post={post} />}
             {post.profile_id === currentUser.id && (
               <>
                 <Button className={styles.btn} onClick={handleEdit}>
@@ -109,3 +82,4 @@ const PostCard = ({ post, editPost, deletePost, publishPost, onLikeChange }) => 
 };
 
 export default PostCard;
+
